@@ -60,9 +60,10 @@ class Tamagotchi(object):
     def __init__(self):
        """initialise all the stat of a tamagotchi"""
        self.name = "Tamagotchi"
-       self.health = {} # /!\ need to be initialisate
-       self.health["healthy"] = true
-       statKey = ('age','expectancy','weight','cleanness','happyness','exercise','hunger')
+       self.health = dict.fromkeys(sick.keys(),False) # /!\ need to be initialisate
+       self.health["healthy"] = True
+       self.statKey = ('age','expectancy','weight',\
+                        'cleanness','happyness','exercise','hunger')
        self.stat_max = dict.fromkeys{statKey,100.0}
        self.stat_degen = dict.fromkeys{statKey,0.0}
        self.stat = dict.fromkeys(statKey,0.0)
@@ -73,8 +74,8 @@ class Tamagotchi(object):
         Take a table (weight,cleanness,happyness,exercise,hunger),
         and "add" it to the stat
        """
-       for key in score
-        self.stat[key] = score[key]
+       for key in score:
+           self.stat[key] = score[key]
     #def_modify_stat(self,score)
 
     def play(self):
@@ -101,5 +102,4 @@ class Tamagotchi(object):
         score = {"exercise" = 10}
         modify_stat(score);
        #def_sleep(self)
-
 #END_CLASS
