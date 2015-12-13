@@ -58,7 +58,7 @@ def afficher_stats(tama):
         posY += 30
 
         # Status
-        status = str(join(tama.get_sick()))
+        status = str(tama.get_sick())
 
         #if(status == "h e a l t h y"):
         text = font.render("STATUS: " + status, True, BLACK)
