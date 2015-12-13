@@ -17,7 +17,7 @@ class Tamagotchi:
     ~ expectancy: float // Life time expetency
 
     ~ health: Dict(bollean) // a table of bolean with all the sick
-                                    as key (or,if not sick only "healthy")
+                                    as key (or,if not sick only "Healthy")
 
     ~ stat_regen: Dict(degen) // a table of stat degen with a stat as key
 
@@ -102,15 +102,16 @@ class Tamagotchi:
     #def get_sick(self):
     def _init_stat_regen(self):
         """initialise the degen rate of stat"""
-        self.stat_regen['health'] = 0.33
-        self.stat_regen['cleanness'] = -0.1
-        self.stat_regen['energy'] = -0.1
+        self.stat_regen['health'] = 1
+        self.stat_regen['cleanness'] = -1
+        self.stat_regen['energy'] = -1
+        self.stat_regen['age'] = 0.00046
     #def _init_stat_regen(self):
 
     def set_stat(self,stat_name,stat_value):
         """Set a stat to a given value"""
-        self.stat[stat_name] -= stat_value
-        if self.stat[stat_name] < 0:
+        self.stat[stat_name] = stat_value
+        if self.stat[stat_name] <= 0:
             self.stat[stat_name] = 0
         #if self.stat[stat_name] < 0:
         elif self.stat[stat_name] > 100:
@@ -178,7 +179,7 @@ class Tamagotchi:
                 #if self.sickness[key]:
             #if key != healthy:
         #for key in slef.sickness::
-        self.sickness["healthy"] = is_healthy
+        self.sickness["Healthy"] = is_healthy
     #def health(self):
 
     def sick(self):
@@ -208,13 +209,13 @@ class Tamagotchi:
         is_healthy = True
         for key in self.sickness:
             if key != "Healthy":
-                if self.sickness[key] == False :
+                if self.sickness[key] == True :
                     is_healthy = False
                     break
                 #if self.sickness[key]:
             #if key != healthy:
         #for key in slef.sickness::
-        self.sickness["healthy"] = is_healthy
+        self.sickness["Healthy"] = is_healthy
     #def sick(self):
 
     def eat(self,aliment_name ):
@@ -237,10 +238,9 @@ class Tamagotchi:
                 new_stat = self.get_stat(stat_name) + self.stat_regen[stat_name]
                 self.set_stat(stat_name,new_stat)
                 #for stat_name in self.stat_regen:c
-            self.stat["age"] += 0.000046 #getting old
             x += 1
-            #while x < time:
-        #for stat_name
+        #while x < time:
+
     #END_def
     def __repr__(self):
         """ Returns a string representing the current state of the Tamagotchi """
@@ -248,6 +248,7 @@ class Tamagotchi:
         for key, value in self.stat.items():
             if(key != "expectancy"):
                 stats += key + " " + str(value) + '\n'
+            
         #for key, value in self.stat:
         return stats
     #def __repr__(self):
