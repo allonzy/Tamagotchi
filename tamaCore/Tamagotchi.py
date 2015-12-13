@@ -257,7 +257,7 @@ class Tamagotchi:
         def save(self):
         """ Save the game """
         identity = dict.fromkeys(self.statKey)
-        for key in identity
+        for key in identity:
            identity[key] = self.get_value(key),
         identity["Name"] = self.name,
         identity["Time"] = time.time(),
