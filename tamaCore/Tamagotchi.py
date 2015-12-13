@@ -3,6 +3,7 @@
 
 #from sickness import *
 #from aliment import *
+import pickle
 class Tamagotchi:
 
     """The core class who describe a tamagotchi(the animal)
@@ -37,6 +38,8 @@ class Tamagotchi:
 
     ----------------------------Method-------------------------------
 
+    ~get_sick(): void //return the list of actual sickness
+
     ~_init_stat_regen()
 
     + eat(string aliment): void
@@ -65,6 +68,9 @@ class Tamagotchi:
 
     + __repr__(): void
 
+    +save ():void //save a game
+
+    +load(): void // load a game
 
    """
 
@@ -82,6 +88,7 @@ class Tamagotchi:
         self.stat['age'] = 0
         self.stat['weight'] = 50
     #def___init__(self)
+#//!\\ TODO get_sick()return a list of sickness
     def _init_stat_regen(self):
         """initialise the degen rate of stat"""
         self.stat_regen['health'] = 0.33
@@ -132,23 +139,23 @@ class Tamagotchi:
     def heal(self):
         """Heal a sickness if stat is hight enought """
         for sickness in sickness_list:
-            sickness_stat = sickness_list[sickness][0]
+            sickness_stat,sickness_degen = sickness_list[sickness]
             stat_value = self.get_stat(sickness_stat)
             if sickness_stat == "weight":
                 if sickness_stat > 50:#fatty
                     if stat_value < sickness_stat - 5:
-                        self.sickness[sickness_stat] = False
+                        self.sickness[sickness] = False
                     #if stat_value > sickness_stat
                 #if sickness_stat > 50:
                 else:
                     if stat_value > sickness_stat + 5:
-                        self.sickness[sickness_stat] = False
+                        self.sickness[sickness] = False
                     #if stat_value < sickness_stat:
                 #else:
             #if sickness_stat == "weight":
 
             elif stat_value > sickness_stat + 10:
-                self.sickness[sickness_stat] = False
+                self.sickness[sickness] = False
             #elif sickness_stat < get_stat(sickness_stat):
         #for sickness in sickness_list:
         is_healthy = True
@@ -165,6 +172,38 @@ class Tamagotchi:
 
     def sick(self):
         """Caught sick if stat is low enough """
+        for sickness in sickness_list:
+            sickness_stat,sickness_stat_value,sickness_degen = sickness_list[sickness]
+            stat_value = self.get_stat(sickness_stat)
+            if sickness_stat == "weight":
+                if sickness_stat_value > 50:#fatty
+                    if stat_value > sickness_stat_value:
+                        self.sickness[sickness] = True
+                        #//!\\ actualyse the degen
+                    #if stat_value > sickness_stat
+                #if sickness_stat > 50:
+                else:
+                    if stat_value < sickness_stat_value: #skinny
+                        self.sickness[sickness] = True
+                        #//!\\ actualyse the degen
+                    #if stat_value < sickness_stat_value:
+                #else:
+            #if sickness_stat == "weight":
+        elif stat_value < sickness_stat_value:
+                self.sickness[sickness] = True
+                #//!\\ actualise the degen
+            #elif stat_value < sickness_stat_value:
+        #for sickness in sickness_list:
+        is_healthy = True
+        for key in slef.sickness:
+            if key != healthy:
+                if self.sickness[key] == False :
+                    healthy = False
+                    break
+                #if self.sickness[key]:
+            #if key != healthy:
+        #for key in slef.sickness::
+        self.sickness["healthy"] = is_healthy
     #def sick(self):
 
     def eat(self,aliment_name ):
@@ -172,11 +211,13 @@ class Tamagotchi:
         aliment_satiety, aliment_happyness, aliment_weight = aliment_list[aliment_name]
         score = {"satiety": aliment_satiety,"happyness": aliment_happyness,"weight": aliment_weight}
     #def eat(self,aliment ):
+
     def sleep(self):
         """A method to restore tamagotchi exercise"""
         score = {"energy" : 10}
         self.modify_stat(score)
-    #def_sleep(self)
+    #def_sleep(self):
+
     def pass_time(self,time):
         """Take a number and go forward in time in minute   """
         for x in range(0,time):
@@ -189,21 +230,41 @@ class Tamagotchi:
     #END_def
     def __repr__(self):
         """ Returns a string representing the current state of the Tamagotchi """
-
         stats = ""
-
         for key, value in self.stat.items():
             if(key != "expectancy"):
                 stats += key + " " + str(value) + '\n'
-
         #for key, value in self.stat:
-
         return stats
-
     #def __repr__(self):
-
     def __str__(self):
         """ Returns a string containing the tamagotchi's stats"""
         return self.__repr__()
     #def __str__(self):
+#class Tamagotchi:
+
+    def save(self):
+        """ Save the game """
+        identity = dict.fromkeys(self.statKey)
+        for key in identity
+           identity[key] = self.get_value(key)
+        identity["Name"] = self.name
+
+        with open('save', 'wb') as fichier:
+            my_pickler = pickle.Pickler(fichier)
+            my_pickler.dump(identity)
+    #def save(self)
+
+    def load_game(self):
+        """ OBVIOUSLY """
+        with open('save', 'rb') as fichier:
+            my_depickler = pickle.Unpickler(fichier)
+            identity = my_depickler.load()
+
+            for key, value in identity.items():
+                self.set_stat(key,value)
+
+
+    #def load_game
+
 #class Tamagotchi:
