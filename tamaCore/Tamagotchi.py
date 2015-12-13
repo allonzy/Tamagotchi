@@ -208,7 +208,7 @@ class Tamagotchi:
         is_healthy = True
         for key in self.sickness:
             if key != "Healthy":
-                if self.sickness[key] == False :
+                if self.sickness[key] == True :
                     is_healthy = False
                     break
                 #if self.sickness[key]:
@@ -237,7 +237,7 @@ class Tamagotchi:
                 new_stat = self.get_stat(stat_name) + self.stat_regen[stat_name]
                 self.set_stat(stat_name,new_stat)
                 #for stat_name in self.stat_regen:c
-            self.stat["age"] += 0.000046 #getting old
+            self.stat["age"] += 0.0046 #getting old
             x++
             #while x < time:
         #for stat_name
