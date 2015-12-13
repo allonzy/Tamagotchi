@@ -2,9 +2,9 @@
 # coding=utf-8
 
 
-import tamaCore
+from tamaCore.Tamagotchi import Tamagotchi
 import tamaView.window
 
-tama = tamaCore.Tamagotchi()
+tama = Tamagotchi()
 
 tamaView.window.afficher(tama)
