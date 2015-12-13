@@ -1,5 +1,5 @@
 
-class Tamagotchi(object):
+class Tamagotchi:
     """The core class who describe a tamagotchi(the animal)
 
     ------------------------atribute----------------------------------
@@ -134,6 +134,7 @@ class Tamagotchi(object):
         score = {"exercise" : 10}
         self.modify_stat(score)
     #def_sleep(self)
+
 
 
 #END_CLASS
