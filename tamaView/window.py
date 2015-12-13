@@ -5,12 +5,15 @@ import pygame
 
 from window_stat import *
 
-def afficher(tama):
+def afficher_stats(tama):
     """Affiche les stats du tamagotchi"""
+
+
     pygame.init()
 
     screen = pygame.display.set_mode(size)
 
+    title = "ID Card"
     pygame.display.set_caption(title)
 
     done = False
@@ -25,7 +28,7 @@ def afficher(tama):
                 done = True
 
         # --- Game logic should go here
-        stats = str(tama)
+
 
         # --- Drawing code should go here
 
@@ -35,20 +38,44 @@ def afficher(tama):
 
         # Select the font to use, size, bold, italics
         font = pygame.font.SysFont('Calibri', 25, True, False)
-        # Render the text. "True" means anti-aliased text.
-        # Black is the color. This creates an image of the
-        # letters, but does not put it on the screen
+
+        posY = default_posY
+        posX = default_posX
+
+        # Name
+        text = font.render("NAME: " + tama.name, True, BLACK)
+        screen.blit(text, [posX, posY])
+        posY += 30
+
+        # Age
+        text = font.render("AGE: " + str(tama.get_stat("age")), True, BLACK)
+        screen.blit(text, [posX, posY])
+        posY += 30
+
+        # Weight
+        text = font.render("WEIGHT: " + str(tama.get_stat("weight")), True, BLACK)
+        screen.blit(text, [posX, posY])
+        posY += 30
+
+        # Status
+        #//!\\ TODO tama.get_sick()
+        text = font.render("STATUS: " + " ".join(['FAT', 'DIABETIC', 'STERILE']), True, BLACK)
+        screen.blit(text, [posX, posY])
+        posY += 30
+
+        pygame.draw.line(screen, RED, [posX, posY], [posX + width, posY], 5)
+
 
         i = 0
-        for line in stats.split('\n'):
-            text = font.render(line, True, BLACK)
-            screen.blit(text, [0, 0 + i])
-            i += 30
+        # for line in stats.split('\n'):
+        #     text = font.render(line, True, BLACK)
+        #     screen.blit(text, [posX, posY + i])
+        #     i += 30
         # --- Go ahead and update the screen with what we've drawn.
         pygame.display.flip()
 
-        # --- Limit to 60 frames per second
-        clock.tick(60)
+        # --- Limit to tick_rate frames per second
+        clock.tick(tick_rate)
 
     # Close the window and quit.
     # If you forget this line, the program will 'hang'
