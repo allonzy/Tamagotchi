@@ -4,6 +4,7 @@
 from sickness import *
 #from aliment import *
 import pickle
+import time
 class Tamagotchi:
 
     """The core class who describe a tamagotchi(the animal)
@@ -70,7 +71,7 @@ class Tamagotchi:
 
     + save ():void //save a game
 
-    + load(): void // load a game
+    + load(): float // load a game and return the time since the last connection
 
    """
 
@@ -234,7 +235,7 @@ class Tamagotchi:
             for stat_name in self.stat_regen:
                 new_stat = self.get_stat(stat_name) + self.stat_regen[stat_name]
                 self.set_stat(stat_name,new_stat)
-                self.stat["age"] += 0.000046 #getting old
+            self.stat["age"] += 0.000046 #getting old
             #for x in range(0,time):
         #for stat_name
     #END_def
@@ -258,7 +259,9 @@ class Tamagotchi:
         identity = dict.fromkeys(self.statKey)
         for key in identity:
            identity[key] = self.get_value(key)
+
         identity["Name"] = self.name
+        identity["Time"] = time.time()
 
         with open('save', 'wb') as fichier:
             my_pickler = pickle.Pickler(fichier)
@@ -266,13 +269,17 @@ class Tamagotchi:
     #def save(self)
 
     def load_game(self):
-        """ OBVIOUSLY """
+        """ Load the game and return the time since the last connection """
         with open('save', 'rb') as fichier:
             my_depickler = pickle.Unpickler(fichier)
             identity = my_depickler.load()
 
             for key, value in identity.items():
                 self.set_stat(key,value)
+            old_time = identity["Time"]
+            now_time = time.time()
+
+            return (now_time - old_time)/60
 
 
     #def load_game

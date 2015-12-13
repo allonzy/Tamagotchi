@@ -10,4 +10,4 @@ tama = Tamagotchi()
 while True :
     tamaView.window.afficher_stats(tama)
 
-    tama.pass_time(100000)
+    tama.pass_time(1000000)
