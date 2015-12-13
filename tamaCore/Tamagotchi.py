@@ -137,18 +137,18 @@ class Tamagotchi:
             if sickness_stat == "weight":
                 if sickness_stat > 50:#fatty
                     if stat_value < sickness_stat - 5:
-                        self.sickness[sickness_stat] = False
+                        self.sickness[sickness] = False
                     #if stat_value > sickness_stat
                 #if sickness_stat > 50:
                 else:
                     if stat_value > sickness_stat + 5:
-                        self.sickness[sickness_stat] = False
+                        self.sickness[sickness] = False
                     #if stat_value < sickness_stat:
                 #else:
             #if sickness_stat == "weight":
 
             elif stat_value > sickness_stat + 10:
-                self.sickness[sickness_stat] = False
+                self.sickness[sickness] = False
             #elif sickness_stat < get_stat(sickness_stat):
         #for sickness in sickness_list:
         is_healthy = True
@@ -165,6 +165,35 @@ class Tamagotchi:
 
     def sick(self):
         """Caught sick if stat is low enough """
+        for sickness in sickness_list:
+            sickness_stat = sickness_list[sickness][0]
+            stat_value = self.get_stat(sickness_stat)
+            if sickness_stat == "weight":
+                if sickness_stat > 50:#fatty
+                    if stat_value > sickness_stat:
+                        self.sickness[sickness] = True
+                    #if stat_value > sickness_stat
+                #if sickness_stat > 50:
+                else:
+                    if stat_value < sickness_stat:
+                        self.sickness[sickness] = True
+                    #if stat_value < sickness_stat:
+                #else:
+            #if sickness_stat == "weight":
+            elif stat_value < sickness_stat:
+                self.sickness[sickness] = True
+            #elif sickness_stat < get_stat(sickness_stat):
+        #for sickness in sickness_list:
+        is_healthy = True
+        for key in slef.sickness:
+            if key != healthy:
+                if self.sickness[key] == False :
+                    healthy = False
+                    break
+                #if self.sickness[key]:
+            #if key != healthy:
+        #for key in slef.sickness::
+        self.sickness["healthy"] = is_healthy
     #def sick(self):
 
     def eat(self,aliment_name ):
@@ -172,11 +201,13 @@ class Tamagotchi:
         aliment_satiety, aliment_happyness, aliment_weight = aliment_list[aliment_name]
         score = {"satiety": aliment_satiety,"happyness": aliment_happyness,"weight": aliment_weight}
     #def eat(self,aliment ):
+
     def sleep(self):
         """A method to restore tamagotchi exercise"""
         score = {"energy" : 10}
         self.modify_stat(score)
-    #def_sleep(self)
+    #def_sleep(self):
+
     def pass_time(self,time):
         """Take a number and go forward in time in minute   """
         for x in range(0,time):
@@ -189,19 +220,13 @@ class Tamagotchi:
     #END_def
     def __repr__(self):
         """ Returns a string representing the current state of the Tamagotchi """
-
         stats = ""
-
         for key, value in self.stat.items():
             if(key != "expectancy"):
                 stats += key + " " + str(value) + '\n'
-
         #for key, value in self.stat:
-
         return stats
-
     #def __repr__(self):
-
     def __str__(self):
         """ Returns a string containing the tamagotchi's stats"""
         return self.__repr__()
