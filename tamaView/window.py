@@ -50,9 +50,13 @@ def afficher_stats(tama, screen):
 
     pygame.draw.line(screen, RED, [0, posY], [width, posY], 5)
 
+    posY += 5
     #Stats
-    for stat, value in get_all_stat().items():
-        text = font.render(stat.upper() + ": " + math.truncate(value))
+    for stat, value in tama.get_all_stat().items():
+        text = font.render(stat.upper() + ": " + str(math.trunc(value)), True, BLACK)
+        screen.blit(text, [posX, posY])
+        posY += 30
+
     #for stat, value in get_all_stats():
 
 #def afficher(tama):

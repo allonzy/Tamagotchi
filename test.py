@@ -39,6 +39,9 @@ while not done:
     # --- Limit to tick_rate frames per second
     clock.tick(tick_rate)
     tama.pass_time(1)
+
+    if(tama.get_sick()["Dead"] == True):
+        done = True
 # Close the window and quit.
 # If you forget this line, the program will 'hang'
 # on exit if running from IDLE.
