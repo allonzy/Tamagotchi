@@ -1,4 +1,5 @@
 #from sickness import *
+#from aliment import *
 class Tamagotchi:
 
     """The core class who describe a tamagotchi(the animal)
@@ -70,11 +71,12 @@ class Tamagotchi:
         self.sickness = dict.fromkeys(sickness_list.keys(),False) # /!\ need to be initialisate
         self.sickness["healthy"] = True
         self.statKey = ('health','age','expectancy','weight',\
-                        'cleanness','happyness','hunger','energy')
+                        'cleanness','happyness','satiety','energy')
         self.stat_max = dict.fromkeys(self.statKey,100.0)
         self.stat_regen = dict.fromkeys(self.statKey,0.0)
         self._init_stat_regen()
         self.stat = dict.fromkeys(self.statKey,70.0)
+        self.stat['age'] = 0
         self.stat['weight'] = 50
     #def___init__(self)
     def _init_stat_regen(self):
@@ -162,6 +164,11 @@ class Tamagotchi:
     """Caught sick if stat is low enought"""
     #def sick(self):
 
+    def eat(self,aliment_name ):
+        """Eat a given aliment to restore energy, health and increase weight """
+        aliment_satiety, aliment_happyness, aliment_weight = aliment_list[aliment_name]
+        score("satiety": aliment_satiety,"happyness": aliment_happyness,"weight": aliment_weight)
+    #def eat(self,aliment ):
     def sleep(self):
         """A method to restore tamagotchi exercise"""
         score = {"energy" : 10}
@@ -171,10 +178,33 @@ class Tamagotchi:
         """Take a number and go forward in time in minute   """
         for x in range(0,time):
             for stat_name in self.stat_regen:
-                self.stat[stat_name] -= self.stat_regen[stat_name]
+                new_stat = self.get_stat(stat_name) + self.stat_regen[stat_name]
+                self.set_stat(stat_name,new_stat)
                 self.stat["age"] += 0.000046 #getting old
             #END_for
         #END_for
     #END_def
+    def __repr__(self):
+​
+        """ Returns a string representing the current state of the Tamagotchi """
+​
+        stats = ""
+​
+        for key, value in self.stat.items():
+            if(key != "expectancy"):
+                stats += key + " " + str(value) + '\n'
+​
+        #for key, value in self.stat:
+​
+​
+​
+        return stats
+​
+    #def __repr__(self):
+​
+    def __str__(self):
+        """ Returns a string containing the tamagotchi's stats"""
+        return self.__repr__()
+    #def __str__(self):
 
 #class Tamagotchi:
