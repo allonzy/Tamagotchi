@@ -171,6 +171,12 @@ class Tamagotchi:
         self.modify_stat(score);
     #def_wash(self)
 
+    def is_dead():
+        """return true if dead false else"""
+        return self.sickness ["Dead"]
+        #if self.sickness ["Dead"]:
+    #def is_dead():
+
     def heal(self):
         """Heal a sickness if stat is hight enought """
         for sickness in sickness_list:
@@ -246,13 +252,16 @@ class Tamagotchi:
 
     def eat(self,aliment_name ):
         """Eat a given aliment to restore energy, health and increase weight """
-        aliment_satiety, aliment_happyness, aliment_weight = aliment_list[aliment_name]
+        aliment_satiety[aliment_name][0]
+        aliment_happyness[aliment_name][1]
+        aliment_weight = aliment_list[aliment_name][2]
         score = {"satiety": aliment_satiety,"happyness": aliment_happyness,"weight": aliment_weight}
+        self.modify_stat(score)
     #def eat(self,aliment ):
 
     def sleep(self):
         """A method to restore tamagotchi exercise"""
-        score = {"energy" : 10}
+        score = {"energy" : 2}
         self.modify_stat(score)
     #def_sleep(self):
 
@@ -273,7 +282,7 @@ class Tamagotchi:
     #END_def
 
     def die(self):
-        """Test how it dieand return a string"""
+        """Test how it die and return a string"""
         pass
     #def die(self):
     def __repr__(self):
