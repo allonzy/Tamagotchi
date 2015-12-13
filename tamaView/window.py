@@ -47,8 +47,9 @@ def afficher_stats(tama, screen):
     screen.blit(text, [posX, posY])
     posY += 30
 
-    pygame.draw.line(screen, RED, [posX, posY], [posX + width, posY], 5)
+    pygame.draw.line(screen, RED, [0, posY], [width, posY], 5)
 
     #Stats
+    
 
 #def afficher(tama):
