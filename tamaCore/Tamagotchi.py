@@ -2,7 +2,7 @@
 # coding=utf-8
 
 from sickness import *
-#from aliment import *
+from aliment import *
 import pickle
 import time
 class Tamagotchi:
@@ -104,15 +104,18 @@ class Tamagotchi:
                 actual_sickness[key] = value
             #if value == True:
         #for key in self.sickness:
-        print "grinch ", actual_sickness
         return actual_sickness
     #def get_sick(self):
 
     def _init_stat_regen(self):
-        """initialise the degen rate of stat"""
+        """initialise the regen rate of stat"""
+        for element in self.stat_regen.keys():
+            self.stat_regen[element] = 0
+        #for element in self.stat_regen:
         self.stat_regen['health'] = 0.33
         self.stat_regen['cleanness'] = -0.2
         self.stat_regen['energy'] = -0.2
+
 
         self.stat_regen['age'] = 0.00046
     #def _init_stat_regen(self):
@@ -144,11 +147,11 @@ class Tamagotchi:
 
     def modify_stat(self,score):
         """
-            Take a Dict of stat (weight,cleanness,happyness,exercise,hunger),
+            Take a Dict of stat (weight,cleanness,happyness,energy,hunger),
             with modifier as value and "add" it to the stat
         """
         for key in score:
-            self.set_stat(key,score[key])
+            self.set_stat(key, self.get_stat(key) + score[key])
         #def for key in score:
     #def_modify_stat(self,score)
 
@@ -160,7 +163,7 @@ class Tamagotchi:
     def play(self):
         """A method to make the tamagotchi play"""
         #score = miniGamePlay()
-        score = {'exercise': -5,'happyness': 10,"weight": -5}
+        score = {'energy': -5,'happyness': 10,"weight": -5}
         self.modify_stat(score);
     #def_play(self)
 
@@ -171,11 +174,11 @@ class Tamagotchi:
         self.modify_stat(score);
     #def_wash(self)
 
-    def is_dead():
+    def is_dead(self):
         """return true if dead false else"""
         return self.sickness ["Dead"]
         #if self.sickness ["Dead"]:
-    #def is_dead():
+    #def is_dead(self):
 
     def heal(self):
         """Heal a sickness if stat is hight enought """
@@ -252,15 +255,15 @@ class Tamagotchi:
 
     def eat(self,aliment_name ):
         """Eat a given aliment to restore energy, health and increase weight """
-        aliment_satiety[aliment_name][0]
-        aliment_happyness[aliment_name][1]
+        aliment_satiety = aliment_list[aliment_name][0]
+        aliment_happyness = aliment_list[aliment_name][1]
         aliment_weight = aliment_list[aliment_name][2]
         score = {"satiety": aliment_satiety,"happyness": aliment_happyness,"weight": aliment_weight}
         self.modify_stat(score)
     #def eat(self,aliment ):
 
     def sleep(self):
-        """A method to restore tamagotchi exercise"""
+        """A method to restore tamagotchi energy"""
         score = {"energy" : 2}
         self.modify_stat(score)
     #def_sleep(self):

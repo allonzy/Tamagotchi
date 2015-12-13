@@ -26,4 +26,4 @@ default_posX = 5
 default_posY = 5
 
 #Set the default tick rate
-tick_rate = 1
+tick_rate = 60
