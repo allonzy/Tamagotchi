@@ -2,6 +2,7 @@
 # coding=utf-8
 """sickness_list[stat]=(sickness_stat,sickness_statValue,sickness_degen)"""
 sickness_list = {
+"Healthy",
 "Hungry": ("satiety",20, {"health" = -0.2 } ),
 "Very Hungry":("satiety",0, {"health" = -0.46 } ),
 "Tired": ("energy",20, {"happyness" = -0.2 } ),
