@@ -71,7 +71,7 @@ class Tamagotchi:
 
     + save ():void //save a game
 
-    + load(): void // load a game
+    + load(): float // load a game and return the time since the last connection
 
    """
 
@@ -268,7 +268,7 @@ class Tamagotchi:
     #def save(self)
 
     def load_game(self):
-        """ OBVIOUSLY """
+        """ Load the game and return the time since the last connection """
         with open('save', 'rb') as fichier:
             my_depickler = pickle.Unpickler(fichier)
             identity = my_depickler.load()
