@@ -112,7 +112,7 @@ class Tamagotchi:
 
     def get_stat(self,stat_name):
         """Return the value of a stat by his name //get_stat(stat_name)"""
-        return self.stat(stat_name)
+        return self.stat[stat_name]
     #def get_stat(self,stat_name):
 
     def play(self):

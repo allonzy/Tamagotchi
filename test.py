@@ -7,4 +7,4 @@ import tamaView.window
 
 tama = Tamagotchi()
 
-tamaView.window.afficher(tama)
+tamaView.window.afficher_stats(tama)
