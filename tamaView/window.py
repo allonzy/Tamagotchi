@@ -2,6 +2,7 @@
 # coding=utf-8
 
 import pygame
+import math
 
 from window_stat import *
 
@@ -50,6 +51,8 @@ def afficher_stats(tama, screen):
     pygame.draw.line(screen, RED, [0, posY], [width, posY], 5)
 
     #Stats
-    
+    for stat, value in get_all_stat().items():
+        text = font.render(stat.upper() + ": " + math.truncate(value))
+    #for stat, value in get_all_stats():
 
 #def afficher(tama):

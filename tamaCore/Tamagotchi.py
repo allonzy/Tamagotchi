@@ -190,7 +190,7 @@ class Tamagotchi:
         is_healthy = True
         for key in self.sickness:
             if key != "Healthy":
-                if self.sickness[key] == False :
+                if self.sickness[key] == True :
                     is_healthy = False
                     break
                 #if self.sickness[key]:
