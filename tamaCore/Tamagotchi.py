@@ -88,11 +88,11 @@ class Tamagotchi:
         self.stat['age'] = 0
         self.stat['weight'] = 50
     #def___init__(self)
-#//!\\ TODO get_sick()return a list of sickness
+
     def get_sick(self):
         """return all the statues of animal"""
         actual_sickness = list()
-        for key,value in self.sickness:
+        for key,value in self.sickness.items:
             if value == True:
                 actual_sickness += key
             #if value == True:
@@ -199,7 +199,7 @@ class Tamagotchi:
                     #if stat_value < sickness_stat_value:
                 #else:
             #if sickness_stat == "weight":
-        elif stat_value < sickness_stat_value:
+            elif stat_value < sickness_stat_value:
                 self.sickness[sickness] = True
                 #//!\\ actualise the degen
             #elif stat_value < sickness_stat_value:
@@ -234,7 +234,8 @@ class Tamagotchi:
             for stat_name in self.stat_regen:
                 new_stat = self.get_stat(stat_name) + self.stat_regen[stat_name]
                 self.set_stat(stat_name,new_stat)
-                self.stat["age"] += 0.000046 #getting old
+                #for stat_name in self.stat_regen:
+            self.stat["age"] += 0.000046 #getting old
             #for x in range(0,time):
         #for stat_name
     #END_def
@@ -256,7 +257,7 @@ class Tamagotchi:
     def save(self):
         """ Save the game """
         identity = dict.fromkeys(self.statKey)
-        for key in identity
+        for key in identity:
            identity[key] = self.get_value(key)
         identity["Name"] = self.name
 
