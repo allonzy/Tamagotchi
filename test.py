@@ -7,4 +7,7 @@ import tamaView.window
 
 tama = Tamagotchi()
 
-tamaView.window.afficher_stats(tama)
+while True :
+    tamaView.window.afficher_stats(tama)
+
+    tama.pass_time(100000)
