@@ -111,13 +111,17 @@ class Tamagotchi:
 
     def debuff(self):
         """get all the debuff from current sick"""
-        for sick in self.sickness:
-            if self.sickness[sick] == True:
-                debuff_list = {}
-                for debuff_value in :
-                    pass
-                #for debuff_value in :
-            #if self.sickness [sick] == True:
+        self._init_stat_regen()
+        if self.sickness["Healthy"] == False:
+            for sick in self.sickness:
+                if self.sickness[sick] == True:
+                    debuff_list = sickness_list[sick][2]
+                    for debuff_key in debuff_list:
+                        self.stat_regen[debuff_key] += debuff_list[debuff_key]
+                    #for debuff_key in debuff_list:
+                #if self.sickness [sick] == True:
+            #for sick in self.sickness:
+        #if self.sickness["Healthy"] == False:
     #def debuff(self):
     def set_stat(self,stat_name,stat_value):
         """Set a stat to a given value"""
@@ -257,6 +261,7 @@ class Tamagotchi:
             #while x < time:
         self.sick()
         self.heal()
+        self.debuff()
         #//!\\ TODO self.die()
 
         
