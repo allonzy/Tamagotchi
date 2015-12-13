@@ -230,13 +230,15 @@ class Tamagotchi:
 
     def pass_time(self,time):
         """Take a number and go forward in time in minute   """
-        for x in range(0,time):
+        x = 0
+        while x < time:
             for stat_name in self.stat_regen:
                 new_stat = self.get_stat(stat_name) + self.stat_regen[stat_name]
                 self.set_stat(stat_name,new_stat)
-                #for stat_name in self.stat_regen:
+                #for stat_name in self.stat_regen:c
             self.stat["age"] += 0.000046 #getting old
-            #for x in range(0,time):
+            x++
+            #while x < time:
         #for stat_name
     #END_def
     def __repr__(self):
