@@ -95,7 +95,7 @@ class Tamagotchi:
         actual_sickness = list()
         for key,value in self.sickness.items:
             if value == True:
-                actual_sickness += key
+                actual_sickness.append(key)
             #if value == True:
         #for key in self.sickness:
         return actual_sickness
