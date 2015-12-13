@@ -16,4 +16,5 @@ sickness_list = {
 "Very skinny":["weight",10,{"energy": -0.46}],
 "Fat":["weight",70,{"energy": -0.2}],
 "Very fat":["weight",90,{"energy": -0.2}],
+"Dead": ["health", 1, {"health": -100}]
 }

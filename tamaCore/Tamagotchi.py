@@ -98,14 +98,16 @@ class Tamagotchi:
 
     def get_sick(self):
         """return all the statues of animal"""
-        actual_sickness = list()
+        actual_sickness = dict()
         for key,value in self.sickness.items():
             if value == True:
-                actual_sickness.append(key)
+                actual_sickness[key] = value
             #if value == True:
         #for key in self.sickness:
+        print "grinch ", actual_sickness
         return actual_sickness
     #def get_sick(self):
+
     def _init_stat_regen(self):
         """initialise the degen rate of stat"""
         self.stat_regen['health'] = 0.33

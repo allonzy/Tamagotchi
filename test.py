@@ -40,7 +40,7 @@ while not done:
     clock.tick(tick_rate)
     tama.pass_time(1)
 
-    if(tama.get_sick()["Dead"] == True):
+    if(tama.is_dead()):
         done = True
 # Close the window and quit.
 # If you forget this line, the program will 'hang'

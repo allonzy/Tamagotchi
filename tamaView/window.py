@@ -57,6 +57,6 @@ def afficher_stats(tama, screen):
         screen.blit(text, [posX, posY])
         posY += 30
 
-    #for stat, value in get_all_stats():
+    #for stat, value in get_all_stats().items():
 
 #def afficher(tama):
