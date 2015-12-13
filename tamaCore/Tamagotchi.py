@@ -91,7 +91,7 @@ class Tamagotchi:
         self.stat['weight'] = 50
     #def___init__(self)
 
-    def get_all_stat():
+    def get_all_stat(self):
         """Get all the stat in a dictionnary"""
         return self.stat
     #def get_all_stats():
@@ -267,9 +267,13 @@ class Tamagotchi:
         self.sick()
         self.heal()
         self.debuff()
-        #//!\\ TODO self.die()
 
     #END_def
+
+    def die(self):
+        """Test how it dieand return a string"""
+        pass
+    #def die(self):
     def __repr__(self):
         """ Returns a string representing the current state of the Tamagotchi """
         stats = ""
