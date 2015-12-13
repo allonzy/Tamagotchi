@@ -33,8 +33,6 @@ class Tamagotchi:
     ~ stat('satiety'): float //Tamagotchi actual level of food 0-X
 
     ~stat('energy'): float // Tamagotchi actual level of energy
-    
-    ~stat('age') : float // Tamagotchi actual age
 
     ~ statKey: dict //(age,expectancy,weight,cleanness,happyness,energy,hunger)
 
@@ -69,9 +67,10 @@ class Tamagotchi:
     + modify_stat(int stat[])
 
     + __repr__(): void
-    
-    + save() : void
 
+    +save ():void //save a game
+
+    +load(): void // load a game
 
    """
 
@@ -242,29 +241,30 @@ class Tamagotchi:
         """ Returns a string containing the tamagotchi's stats"""
         return self.__repr__()
     #def __str__(self):
-    
+#class Tamagotchi:
+
     def save(self):
         """ Save the game """
         identity = dict.fromkeys(self.statKey)
         for key in identity
            identity[key] = self.get_value(key)
         identity["Name"] = self.name
-  
+
         with open('save', 'wb') as fichier:
             my_pickler = pickle.Pickler(fichier)
             my_pickler.dump(identity)
     #def save(self)
-    
+
     def load_game(self):
         """ OBVIOUSLY """
         with open('save', 'rb') as fichier:
             my_depickler = pickle.Unpickler(fichier)
             identity = my_depickler.load()
-            
+
             for key, value in identity.items():
                 self.set_stat(key,value)
-            
-            
+
+
     #def load_game
-    
+
 #class Tamagotchi:
