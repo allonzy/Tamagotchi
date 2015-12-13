@@ -71,18 +71,18 @@ class Tamagotchi:
         self.sickness["healthy"] = True
         self.statKey = ('health','age','expectancy','weight',\
                         'cleanness','happyness','hunger','energy')
-        self.stat_max = dict.fromkeys(statKey,100.0)
-        self.stat_regen = dict.fromkeys(statKey,0.0)
+        self.stat_max = dict.fromkeys(self.statKey,100.0)
+        self.stat_regen = dict.fromkeys(self.statKey,0.0)
         self._init_stat_regen()
-        self.stat = dict.fromkeys(statKey,70.0)
+        self.stat = dict.fromkeys(self.statKey,70.0)
         self.stat['weight'] = 50
     #def___init__(self)
-    def _init_stat_regen():
+    def _init_stat_regen(self):
         """initialise the degen rate of stat"""
         self.stat_regen['health'] = 0.33
         self.stat_regen['cleanness'] = -0.1
         self.stat_regen['energy'] = -0.1
-    #def _init_stat_regen():
+    #def _init_stat_regen(self):
 
     def set_stat(self,stat_name,stat_value):
         """Set a stat to a given value"""
@@ -135,16 +135,16 @@ class Tamagotchi:
                         self.sickness[sickness_stat] = False
                     #if stat_value > sickness_stat
                 #if sickness_stat > 50:
-            else:
-                if stat_value > sickness_stat + 5:
-                    self.sickness[sickness_stat] = False
-                #if stat_value < sickness_stat:
-            #else:
+                else:
+                    if stat_value > sickness_stat + 5:
+                        self.sickness[sickness_stat] = False
+                    #if stat_value < sickness_stat:
+                #else:
             #if sickness_stat == "weight":
 
-        elif   stat_value > sickness_stat + 10:
+            elif stat_value > sickness_stat + 10:
                 self.sickness[sickness_stat] = False
-                #elif sickness_stat < get_stat(sickness_stat):
+            #elif sickness_stat < get_stat(sickness_stat):
         #for sickness in sickness_list:
         is_healthy = True
         for key in slef.sickness:
@@ -156,33 +156,10 @@ class Tamagotchi:
             #if key != healthy:
         #for key in slef.sickness::
         self.sickness["healthy"] = is_healthy
-    #def sick(self,stat_name):
+    #def health(self):
 
     def sick(self):
-        """Caught a sickness if stat is low enought """
-        for sickness in sickness_list:
-            sickness_stat = sickness_list[sickness][0]
-            stat_value = self.get_stat(sickness_stat)
-            if sickness_stat == "weight":
-                if sickness_stat < stat_value - 10:
-                    self.sickness[sickness_stat] = False
-                #if sickness_stat < get_stat(sickness_stat)
-            #if sickness_stat == "weight":
-
-        if sickness_stat < stat_value + 10:
-                self.sickness[sickness_stat] = False
-            #if sickness_stat < get_stat(sickness_stat):
-        #for sickness in sickness_list:
-        is_healthy = True
-        for key in slef.sickness:
-            if key != healthy:
-                if self.sickness[key] == False :
-                    healthy = False
-                    break
-                #if self.sickness[key]:
-            #if key != healthy:
-        #for key in slef.sickness::
-        self.sickness["healthy"] = is_healthy
+    """Caught sick if stat is low enought"""
     #def sick(self):
 
     def sleep(self):
