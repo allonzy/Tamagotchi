@@ -73,6 +73,7 @@ class Tamagotchi:
 
     + load(): float // load a game and return the time since the last connection
 
+    + get_stat(): dict[stat] = stat_value
    """
 
     def __init__(self):
@@ -90,6 +91,11 @@ class Tamagotchi:
         self.stat['weight'] = 50
     #def___init__(self)
 
+    def get_all_stat():
+        """Get all the stat in a dictionnary"""
+        return self.stat
+    #def get_all_stats():
+
     def get_sick(self):
         """return all the statues of animal"""
         actual_sickness = list()
@@ -102,9 +108,9 @@ class Tamagotchi:
     #def get_sick(self):
     def _init_stat_regen(self):
         """initialise the degen rate of stat"""
-        self.stat_regen['health'] = 1
-        self.stat_regen['cleanness'] = -1
-        self.stat_regen['energy'] = -1
+        self.stat_regen['health'] = 0.33
+        self.stat_regen['cleanness'] = -0.2
+        self.stat_regen['energy'] = -0.2
 
         self.stat_regen['age'] = 0.00046
     #def _init_stat_regen(self):
@@ -129,8 +135,8 @@ class Tamagotchi:
         if self.stat[stat_name] <= 0:
             self.stat[stat_name] = 0
         #if self.stat[stat_name] < 0:
-        elif self.stat[stat_name] > 100:
-            self.stat[stat_name] = 100
+    elif self.stat[stat_name] > self.stat_max[stat_name]:
+            self.stat[stat_name] = self.stat_max[stat_name]
         #elif self.stat[stat_name] > 100:
     #def set_stat(self,stat_name):
 
@@ -167,28 +173,27 @@ class Tamagotchi:
         """Heal a sickness if stat is hight enought """
         for sickness in sickness_list:
             sickness_stat = sickness_list[sickness][0]
-            sickness_stat_value = sickness_list[sickness][1]
-
+            sickness_degen = sickness_list[sickness][1]
             stat_value = self.get_stat(sickness_stat)
             if sickness_stat == "weight":
                 if sickness_stat > 50:#fatty
-                    if stat_value < sickness_stat_value - 5:
+                    if stat_value < sickness_stat - 5:
                         self.sickness[sickness] = False
                     #if stat_value > sickness_stat
                 #if sickness_stat > 50:
                 else:
-                    if stat_value > sickness_stat_value + 5:
+                    if stat_value > sickness_stat + 5:
                         self.sickness[sickness] = False
                     #if stat_value < sickness_stat:
                 #else:
             #if sickness_stat == "weight":
 
-            elif stat_value > sickness_stat_value + 10:
+            elif stat_value > sickness_stat + 10:
                 self.sickness[sickness] = False
             #elif sickness_stat < get_stat(sickness_stat):
         #for sickness in sickness_list:
         is_healthy = True
-        for key in self.sickness:
+        for key in slef.sickness:
             if key != "Healthy":
                 if self.sickness[key] == True :
                     is_healthy = False
@@ -202,8 +207,8 @@ class Tamagotchi:
     def sick(self):
         """Caught sick if stat is low enough """
         for sickness in sickness_list:
-            sickness_stat = sickness_list[sickness][0]
-            sickness_stat_value = sickness_list[sickness][1]
+            sickness_stat[0]
+            sickness_stat_value[1]
             sickness_degen = sickness_list[sickness][2]
             stat_value = self.get_stat(sickness_stat)
             if sickness_stat == "weight":
@@ -257,17 +262,12 @@ class Tamagotchi:
                 new_stat = self.get_stat(stat_name) + self.stat_regen[stat_name]
                 self.set_stat(stat_name,new_stat)
                 #for stat_name in self.stat_regen:
-            for key, value in self.stat_regen.items():
-                print "grinch ", key, " ", value
-            #for key in self.stat_regen:
             x += 1
             #while x < time:
         self.sick()
         self.heal()
         self.debuff()
         #//!\\ TODO self.die()
-
-
 
     #END_def
     def __repr__(self):
