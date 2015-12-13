@@ -231,7 +231,7 @@ class Tamagotchi:
 
     def pass_time(self,time):
         """Take a number and go forward in time in minute   """
-        x = 0
+        x = 0x
         while x < time:
             for stat_name in self.stat_regen:
                 new_stat = self.get_stat(stat_name) + self.stat_regen[stat_name]
@@ -261,14 +261,9 @@ class Tamagotchi:
         """ Save the game """
         identity = dict.fromkeys(self.statKey)
         for key in identity:
-<<<<<<< HEAD
-           identity[key] = self.get_value(key)
+            identity[key] = self.get_value(key)
         identity["Name"] = self.name
-=======
-           identity[key] = self.get_value(key),
-        identity["Name"] = self.name,
-        identity["Time"] = time.time(),
->>>>>>> f374aaa749c175c1c95198abf5ceeac6850bebc2
+        identity["Time"] = time.time()
 
         with open('save', 'wb') as fichier:
             my_pickler = pickle.Pickler(fichier)
@@ -285,7 +280,7 @@ class Tamagotchi:
                 self.set_stat(key,value)
             old_time = identity["Time"]
             now_time = time.time()
-            
+
             return (now_time - old_time)/60
 
 

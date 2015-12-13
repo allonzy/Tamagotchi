@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 """sickness_list[stat]=(sickness_stat,sickness_statValue,sickness_degen)"""
+sickness_list = dict()
 sickness_list = {
 "Healthy",
 "Hungry": ("satiety",20, {"health" = -0.2 } ),
@@ -10,5 +11,6 @@ sickness_list = {
 "Dirty": ("cleanness",20,{"happyness" = -0.2 } ),
 "Very Dirty": ("cleanness",0,{"happyness" = -0.2 } )
 "Depressive": ("happyness",20,{ "happyness": -0.5 ,"health": -0.5 } )
-"Very Depressive":("happyness",0,{"happyness": -0.5,"health": -0.5})
+"Very Depressive":("happyness",0,{"happyness": -0.5,"health": -0.5} )
+""
 }
