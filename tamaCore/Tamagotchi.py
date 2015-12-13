@@ -236,10 +236,13 @@ class Tamagotchi:
         while x < time:
             for stat_name in self.stat_regen:
                 new_stat = self.get_stat(stat_name) + self.stat_regen[stat_name]
+                print "grinch ", stat_name, " ", new_stat
                 self.set_stat(stat_name,new_stat)
                 #for stat_name in self.stat_regen:c
             x += 1
         #while x < time:
+
+        
 
     #END_def
     def __repr__(self):
@@ -248,7 +251,7 @@ class Tamagotchi:
         for key, value in self.stat.items():
             if(key != "expectancy"):
                 stats += key + " " + str(value) + '\n'
-            
+
         #for key, value in self.stat:
         return stats
     #def __repr__(self):
