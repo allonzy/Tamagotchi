@@ -1,5 +1,6 @@
+#from sickness import *
+class Tamagotchi:
 
-class Tamagotchi(object):
     """The core class who describe a tamagotchi(the animal)
 
     ------------------------atribute----------------------------------
@@ -12,7 +13,7 @@ class Tamagotchi(object):
     ~ health: Dict(bollean) // a table of bolean with all the sick
                                     as key (or,if not sick only "healthy")
 
-    ~ stat_degen: Dict(degen) // a table of stat degen with a stat as key
+    ~ stat_regen: Dict(degen) // a table of stat degen with a stat as key
 
     ~ stat_max: Dict(max) // a table of stat degen with a stat as key
 
@@ -24,13 +25,15 @@ class Tamagotchi(object):
 
     ~ stat('happyness'): float //Tamagotchi actual level of happyness 0-X
 
-    ~ stat('exercise'): float //Tamagotchi actual level of exercise 0-X
-
     ~ stat('satiety'): float //Tamagotchi actual level of food 0-X
 
-    ~ stat('statKey'): dict //(age,expectancy,weight,cleanness,happyness,exercise,hunger)
+    ~stat('energy'): float // Tamagotchi actual level of energy
+
+    ~ statKey: dict //(age,expectancy,weight,cleanness,happyness,energy,hunger)
 
     ----------------------------Method-------------------------------
+
+    ~_init_stat_regen()
 
     + eat(string aliment): void
 
@@ -62,16 +65,35 @@ class Tamagotchi(object):
    """
 
     def __init__(self):
-        """initialise all the stat of a tamagotchi"""
+        """initialize all the stat of a tamagotchi"""
         self.name = "Tamagotchi"
         self.sickness = dict.fromkeys(sickness_list.keys(),False) # /!\ need to be initialisate
         self.sickness["healthy"] = True
-        self.statKey = ('age','expectancy','weight',\
-                        'cleanness','happyness','exercise','hunger')
+        self.statKey = ('health','age','expectancy','weight',\
+                        'cleanness','happyness','hunger','energy')
         self.stat_max = dict.fromkeys(statKey,100.0)
-        self.stat_degen = dict.fromkeys(statKey,0.0)
-        self.stat = dict.fromkeys(statKey,0.0)
+        self.stat_regen = dict.fromkeys(statKey,0.0)
+        self._init_stat_regen()
+        self.stat = dict.fromkeys(statKey,70.0)
+        self.stat['weight'] = 50
     #def___init__(self)
+    def _init_stat_regen():
+        """initialise the degen rate of stat"""
+        self.stat_regen['health'] = 0.33
+        self.stat_regen['cleanness'] = -0.1
+        self.stat_regen['energy'] = -0.1
+    #def _init_stat_regen():
+
+    def set_stat(self,stat_name,stat_value):
+        """Set a stat to a given value"""
+        self.stat[stat_name] -= stat_value
+        if self.stat[stat_name] < 0:
+            self.stat[stat_name] = 0
+        #if self.stat[stat_name] < 0:
+        elif self.stat[stat_name] > 100:
+            self.stat[stat_name] = 100
+        #elif self.stat[stat_name] > 100:
+    #def set_stat(self,stat_name):
 
     def modify_stat(self,score):
         """
@@ -79,7 +101,7 @@ class Tamagotchi(object):
             with modifier as value and "add" it to the stat
         """
         for key in score:
-            self.stat[key] = score[key]
+            self.set_stat(key,score[key])
         #def for key in score:
     #def_modify_stat(self,score)
 
@@ -91,7 +113,7 @@ class Tamagotchi(object):
     def play(self):
         """A method to make the tamagotchi play"""
         #score = miniGamePlay()
-        score = {'weight': -2,'happyness': -5,'hunger': -3,'exercise': -5}
+        score = {'exercise': -5,'happyness': 10,"weight": -5}
         self.modify_stat(score);
     #def_play(self)
 
@@ -108,12 +130,46 @@ class Tamagotchi(object):
             sickness_stat = sickness_list[sickness][0]
             stat_value = self.get_stat(sickness_stat)
             if sickness_stat == "weight":
-                if sickness_stat > stat_value - 10:
+                if sickness_stat > 50:#fatty
+                    if stat_value < sickness_stat - 5:
+                        self.sickness[sickness_stat] = False
+                    #if stat_value > sickness_stat
+                #if sickness_stat > 50:
+            else:
+                if stat_value > sickness_stat + 5:
+                    self.sickness[sickness_stat] = False
+                #if stat_value < sickness_stat:
+            #else:
+            #if sickness_stat == "weight":
+
+        elif   stat_value > sickness_stat + 10:
+                self.sickness[sickness_stat] = False
+                #elif sickness_stat < get_stat(sickness_stat):
+        #for sickness in sickness_list:
+        is_healthy = True
+        for key in slef.sickness:
+            if key != healthy:
+                if self.sickness[key] == False :
+                    healthy = False
+                    break
+                #if self.sickness[key]:
+            #if key != healthy:
+        #for key in slef.sickness::
+        self.sickness["healthy"] = is_healthy
+    #def sick(self,stat_name):
+
+    def sick(self):
+        """Caught a sickness if stat is low enought """
+        for sickness in sickness_list:
+            sickness_stat = sickness_list[sickness][0]
+            stat_value = self.get_stat(sickness_stat)
+            if sickness_stat == "weight":
+                if sickness_stat < stat_value - 10:
                     self.sickness[sickness_stat] = False
                 #if sickness_stat < get_stat(sickness_stat)
             #if sickness_stat == "weight":
 
-            if sickness_stat < stat_value + 10:
+        if sickness_stat < stat_value + 10:
                 self.sickness[sickness_stat] = False
             #if sickness_stat < get_stat(sickness_stat):
         #for sickness in sickness_list:
@@ -127,13 +183,21 @@ class Tamagotchi(object):
             #if key != healthy:
         #for key in slef.sickness::
         self.sickness["healthy"] = is_healthy
-    #def heal(self,stat_name):
+    #def sick(self):
 
     def sleep(self):
         """A method to restore tamagotchi exercise"""
-        score = {"exercise" : 10}
+        score = {"energy" : 10}
         self.modify_stat(score)
     #def_sleep(self)
+    def pass_time(self,time):
+        """Take a number and go forward in time in minute   """
+        for x in range(0,time):
+            for stat_name in self.stat_regen:
+                self.stat[stat_name] -= self.stat_regen[stat_name]
+                self.stat["age"] += 0.000046 #getting old
+            #END_for
+        #END_for
+    #END_def
 
-
-#END_CLASS
+#class Tamagotchi:
