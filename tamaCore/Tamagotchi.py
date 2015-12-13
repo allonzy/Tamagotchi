@@ -173,7 +173,7 @@ class Tamagotchi:
         for key in slef.sickness:
             if key != healthy:
                 if self.sickness[key] == False :
-                    healthy = False
+                    is_healthy = False
                     break
                 #if self.sickness[key]:
             #if key != healthy:
@@ -209,7 +209,7 @@ class Tamagotchi:
         for key in self.sickness:
             if key != "Healthy":
                 if self.sickness[key] == False :
-                    healthy = False
+                    is_healthy = False
                     break
                 #if self.sickness[key]:
             #if key != healthy:
