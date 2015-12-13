@@ -206,8 +206,8 @@ class Tamagotchi:
             #elif stat_value < sickness_stat_value:
         #for sickness in sickness_list:
         is_healthy = True
-        for key in slef.sickness:
-            if key != healthy:
+        for key in self.sickness:
+            if key != "healthy":
                 if self.sickness[key] == False :
                     healthy = False
                     break
@@ -231,12 +231,15 @@ class Tamagotchi:
 
     def pass_time(self,time):
         """Take a number and go forward in time in minute   """
-        for x in range(0,time):
+        x = 0
+        while x < time:
             for stat_name in self.stat_regen:
                 new_stat = self.get_stat(stat_name) + self.stat_regen[stat_name]
                 self.set_stat(stat_name,new_stat)
+                #for stat_name in self.stat_regen:c
             self.stat["age"] += 0.000046 #getting old
-            #for x in range(0,time):
+            x += 1
+            #while x < time:
         #for stat_name
     #END_def
     def __repr__(self):
@@ -258,8 +261,7 @@ class Tamagotchi:
         """ Save the game """
         identity = dict.fromkeys(self.statKey)
         for key in identity:
-           identity[key] = self.get_value(key)
-
+            identity[key] = self.get_value(key)
         identity["Name"] = self.name
         identity["Time"] = time.time()
 

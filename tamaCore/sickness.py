@@ -12,4 +12,5 @@ sickness_list = {
 "Very Dirty": ("cleanness",0,{"happyness" : -0.2 } ),
 "Depressive": ("happyness",20,{ "happyness": -0.5 ,"health": -0.5 } ),
 "Very Depressive":("happyness",0,{"happyness": -0.5,"health": -0.5})
+
 }

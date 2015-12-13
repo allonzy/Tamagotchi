@@ -58,9 +58,8 @@ def afficher_stats(tama):
         posY += 30
 
         # Status
-        status = " ".join(tama.get_sick())
-        if(status == "h e a l t h y"):
-            status = "healthy"
+        status = str(join(tama.get_sick()))
+
         #if(status == "h e a l t h y"):
         text = font.render("STATUS: " + status, True, BLACK)
         screen.blit(text, [posX, posY])
