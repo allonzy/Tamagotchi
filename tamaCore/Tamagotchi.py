@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-#from sickness import *
+from sickness import *
 #from aliment import *
 import pickle
 class Tamagotchi:
@@ -68,17 +68,17 @@ class Tamagotchi:
 
     + __repr__(): void
 
-    +save ():void //save a game
+    + save ():void //save a game
 
-    +load(): void // load a game
+    + load(): void // load a game
 
    """
 
     def __init__(self):
         """initialize all the stat of a tamagotchi"""
         self.name = "Tamagotchi"
-        #//!\\ TODO  self.sickness = dict.fromkeys(sickness_list.keys(),False)
-        #//!\\ TODO  self.sickness["healthy"] = True
+        self.sickness = dict.fromkeys(sickness_list.keys(),False)
+        self.sickness["healthy"] = True
         self.statKey = ('health','age','expectancy','weight',\
                         'cleanness','happyness','satiety','energy')
         self.stat_max = dict.fromkeys(self.statKey,100.0)
@@ -89,6 +89,16 @@ class Tamagotchi:
         self.stat['weight'] = 50
     #def___init__(self)
 #//!\\ TODO get_sick()return a list of sickness
+    def get_sick(self):
+        """return all the statues of animal"""
+        actual_sickness = list()
+        for key,value in self.sickness:
+            if value == True:
+                actual_sickness += key
+            #if value == True:
+        #for key in self.sickness:
+        return actual_sickness
+    #def get_sick(self):
     def _init_stat_regen(self):
         """initialise the degen rate of stat"""
         self.stat_regen['health'] = 0.33
