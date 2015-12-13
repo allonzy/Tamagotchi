@@ -5,54 +5,56 @@ import pygame
 
 from window_stat import *
 
-def afficher(tama):
+
+
+def afficher_stats(tama, screen):
     """Affiche les stats du tamagotchi"""
-    pygame.init()
 
-    screen = pygame.display.set_mode(size)
+    # --- Drawing code should go here
 
-    pygame.display.set_caption(title)
+    # First, clear the screen to white. Don't put other drawing commands
+    # above this, or they will be erased with this command.
+    screen.fill(WHITE)
 
-    done = False
+    # Select the font to use, size, bold, italics
+    font = pygame.font.SysFont('Calibri', 25, True, False)
 
-    clock = pygame.time.Clock()
+    posY = default_posY
+    posX = default_posX
 
-    # -------- Main Program Loop -----------
-    while not done:
-        # --- Main event loop
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                done = True
+    # Name
+    text = font.render("NAME: " + tama.name, True, BLACK)
+    screen.blit(text, [posX, posY])
+    posY += 30
 
-        # --- Game logic should go here
-        stats = str(tama)
+    # Age
+    text = font.render("AGE: " + str(tama.get_stat("age")), True, BLACK)
+    screen.blit(text, [posX, posY])
+    posY += 30
 
-        # --- Drawing code should go here
+    # Weight
+    text = font.render("WEIGHT: " + str(tama.get_stat("weight")), True, BLACK)
+    screen.blit(text, [posX, posY])
+    posY += 30
 
-        # First, clear the screen to white. Don't put other drawing commands
-        # above this, or they will be erased with this command.
-        screen.fill(WHITE)
+    # Status
+    status = ""
+    for element in tama.get_sick():
+        status += element + " "
+    #for element in tama.get_sick():
 
-        # Select the font to use, size, bold, italics
-        font = pygame.font.SysFont('Calibri', 25, True, False)
-        # Render the text. "True" means anti-aliased text.
-        # Black is the color. This creates an image of the
-        # letters, but does not put it on the screen
+    text = font.render("STATUS: " + status, True, BLACK)
+    screen.blit(text, [posX, posY])
+    posY += 30
 
-        i = 0
-        for line in stats.split('\n'):
-            text = font.render(line, True, BLACK)
-            screen.blit(text, [0, 0 + i])
-            i += 30
-        # --- Go ahead and update the screen with what we've drawn.
-        pygame.display.flip()
+    pygame.draw.line(screen, RED, [posX, posY], [posX + width, posY], 5)
 
-        # --- Limit to 60 frames per second
-        clock.tick(60)
 
-    # Close the window and quit.
-    # If you forget this line, the program will 'hang'
-    # on exit if running from IDLE.
-    pygame.quit()
+    i = 0
+    # for line in stats.split('\n'):
+    #     text = font.render(line, True, BLACK)
+    #     screen.blit(text, [posX, posY + i])
+    #     i += 30
+    # --- Go ahead and update the screen with what we've drawn.
 
 #def afficher(tama):

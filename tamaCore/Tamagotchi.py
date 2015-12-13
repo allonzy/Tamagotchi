@@ -17,7 +17,7 @@ class Tamagotchi:
     ~ expectancy: float // Life time expetency
 
     ~ health: Dict(bollean) // a table of bolean with all the sick
-                                    as key (or,if not sick only "healthy")
+                                    as key (or,if not sick only "Healthy")
 
     ~ stat_regen: Dict(degen) // a table of stat degen with a stat as key
 
@@ -93,7 +93,7 @@ class Tamagotchi:
     def get_sick(self):
         """return all the statues of animal"""
         actual_sickness = list()
-        for key,value in self.sickness.items:
+        for key,value in self.sickness.items():
             if value == True:
                 actual_sickness.append(key)
             #if value == True:
@@ -105,7 +105,8 @@ class Tamagotchi:
         self.stat_regen['health'] = 1
         self.stat_regen['cleanness'] = -1
         self.stat_regen['energy'] = -1
-        self.stat_regen['age'] = 0.0046
+
+        self.stat_regen['age'] = 0.00046
     #def _init_stat_regen(self):
 
     def debuff(self):
@@ -190,7 +191,7 @@ class Tamagotchi:
                 #if self.sickness[key]:
             #if key != healthy:
         #for key in slef.sickness::
-        self.sickness["healthy"] = is_healthy
+        self.sickness["Healthy"] = is_healthy
     #def health(self):
 
     def sick(self):
@@ -253,10 +254,10 @@ class Tamagotchi:
                 #for stat_name in self.stat_regen:
             x += 1
             #while x < time:
-        #for stat_name
         self.sick()
         self.heal()
         #//!\\ TODO self.die()
+
     #END_def
     def __repr__(self):
         """ Returns a string representing the current state of the Tamagotchi """
@@ -264,6 +265,7 @@ class Tamagotchi:
         for key, value in self.stat.items():
             if(key != "expectancy"):
                 stats += key + " " + str(value) + '\n'
+
         #for key, value in self.stat:
         return stats
     #def __repr__(self):
@@ -273,7 +275,7 @@ class Tamagotchi:
     #def __str__(self):
 #class Tamagotchi:
 
-        def save(self):
+    def save(self):
         """ Save the game """
         identity = dict.fromkeys(self.statKey)
         for key in identity:

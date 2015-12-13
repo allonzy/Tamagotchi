@@ -20,3 +20,10 @@ size = (height, width)
 
 #Set the title of the screen
 title = "Tamagotchi"
+
+#Set the default position of stuff
+default_posX = 5
+default_posY = 5
+
+#Set the default tick rate
+tick_rate = 1
