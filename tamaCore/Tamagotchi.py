@@ -79,7 +79,7 @@ class Tamagotchi:
         """initialize all the stat of a tamagotchi"""
         self.name = "Tamagotchi"
         self.sickness = dict.fromkeys(sickness_list.keys(),False)
-        self.sickness["healthy"] = True
+        self.sickness["Healthy"] = True
         self.statKey = ('health','age','expectancy','weight',\
                         'cleanness','happyness','satiety','energy')
         self.stat_max = dict.fromkeys(self.statKey,100.0)
@@ -206,8 +206,8 @@ class Tamagotchi:
             #elif stat_value < sickness_stat_value:
         #for sickness in sickness_list:
         is_healthy = True
-        for key in slef.sickness:
-            if key != healthy:
+        for key in self.sickness:
+            if key != "Healthy":
                 if self.sickness[key] == False :
                     healthy = False
                     break
