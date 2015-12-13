@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# coding=utf-8
 #from sickness import *
 #from aliment import *
 class Tamagotchi:
@@ -181,8 +183,8 @@ class Tamagotchi:
                 new_stat = self.get_stat(stat_name) + self.stat_regen[stat_name]
                 self.set_stat(stat_name,new_stat)
                 self.stat["age"] += 0.000046 #getting old
-            #END_for
-        #END_for
+            #for x in range(0,time):
+        #for stat_name
     #END_def
     def __repr__(self):
 ​
