@@ -49,12 +49,6 @@ def afficher_stats(tama, screen):
 
     pygame.draw.line(screen, RED, [posX, posY], [posX + width, posY], 5)
 
-
-    i = 0
-    # for line in stats.split('\n'):
-    #     text = font.render(line, True, BLACK)
-    #     screen.blit(text, [posX, posY + i])
-    #     i += 30
-    # --- Go ahead and update the screen with what we've drawn.
+    #Stats
 
 #def afficher(tama):
