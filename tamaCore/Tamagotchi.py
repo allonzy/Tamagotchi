@@ -187,19 +187,19 @@ class Tamagotchi:
             sickness_stat_value = sickness_list[sickness][1]
             stat_value = self.get_stat(sickness_stat)
             if sickness_stat == "weight":
-                if sickness_stat > 50:#fatty
-                    if stat_value < sickness_stat_value - 5:
+                if sickness_stat >= 50:#fatty
+                    if stat_value <= sickness_stat_value - 5:
                         self.sickness[sickness] = False
                     #if stat_value > sickness_stat
                 #if sickness_stat > 50:
                 else:
-                    if stat_value > sickness_stat_value + 5:
+                    if stat_value >= sickness_stat_value + 5:
                         self.sickness[sickness] = False
                     #if stat_value < sickness_stat:
                 #else:
             #if sickness_stat == "weight":
 
-            elif stat_value > sickness_stat_value + 10:
+            elif stat_value >= sickness_stat_value + 10:
                 self.sickness[sickness] = False
             #elif sickness_stat < get_stat(sickness_stat):
         #for sickness in sickness_list:
@@ -223,20 +223,20 @@ class Tamagotchi:
             sickness_degen = sickness_list[sickness][2]
             stat_value = self.get_stat(sickness_stat)
             if sickness_stat == "weight":
-                if sickness_stat_value > 50:#fatty
-                    if stat_value > sickness_stat_value:
+                if sickness_stat_value >= 50:#fatty
+                    if stat_value >= sickness_stat_value:
                         self.sickness[sickness] = True
                         #//!\\ actualyse the degen
                     #if stat_value > sickness_stat
                 #if sickness_stat > 50:
                 else:
-                    if stat_value < sickness_stat_value: #skinny
+                    if stat_value <= sickness_stat_value: #skinny
                         self.sickness[sickness] = True
                         #//!\\ actualyse the degen
                     #if stat_value < sickness_stat_value:
                 #else:
             #if sickness_stat == "weight":
-            elif stat_value < sickness_stat_value:
+            elif stat_value <= sickness_stat_value:
                 self.sickness[sickness] = True
                 #//!\\ actualise the degen
             #elif stat_value < sickness_stat_value:
