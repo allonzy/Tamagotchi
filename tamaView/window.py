@@ -41,6 +41,7 @@ def main_scene(args):
     text = font_action.render("ID CARD", True, GREEN)
     screen.blit(text, [210, 190])
 
+    return None
 
 #def main_window(screen)
 
@@ -97,6 +98,7 @@ def stats_scene(args):
 
     #for stat, value in get_all_stats().items():
 
+    return None
 #def afficher(tama):
 
 def wash_scene(args):
@@ -111,12 +113,12 @@ def wash_scene(args):
     text = font.render(" YOU WASHED THE TAMAGOTCHI ", True, BLACK)
     screen.blit(text, [5, 450])
 
-    tama.wash()
+    return tama.wash
 
 #def wash_scene(tama, scene):
 
 def eat_scene(args):
-    """ Feed the Tamagotchi """
+    """ Feeds the Tamagotchi """
     tama = args[0]
     screen = args[1]
 
@@ -133,7 +135,7 @@ def eat_scene(args):
     text = font.render(" CROQUETTE OR BANANA ?", True, BLACK)
     screen.blit(text, [5, 450])
 
-
+    return None
 #def eat_scene(tama, scene):
 
 def play_scene(args):
@@ -147,7 +149,7 @@ def play_scene(args):
     text = font.render(" YOU PLAYED WITH THE TAMAGOTCHI ", True, BLACK)
     screen.blit(text, [5, 450])
 
-    tama.play()
+    return tama.play
 #def play_scene(tama, scene):
 
 
@@ -162,5 +164,5 @@ def sleep_scene(args):
     text = font.render(" ZZZZZZZZZZZZZZZZZZZZZZZZ ", True, BLACK)
     screen.blit(text, [5, 450])
 
-    tama.sleep()
+    return tama.sleep
 #def sleep_scene(tama, scene):

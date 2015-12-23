@@ -1,3 +1,4 @@
 ./test.py
 
-rm -rf *.pyc
+rm tamaCore/*.pyc
+rm tamaView/*.pyc
