@@ -30,7 +30,9 @@ tick_count = 0
 # -------- Main Program Loop -----------
 while not done:
     # --- Main event loop
-    args = [tama, screen]
+    args_view = [tama, screen]
+    args_action = []
+
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
@@ -81,33 +83,29 @@ while not done:
 
             elif(event.key == pygame.K_c):
                 if(title == "Eat"):
-                    if(len(args) > 2):
-                        args.pop();
-                    #if(len(args) > 2):
-                    args.append("Croquette")
+                    args_action.append("Croquette")
+                    args_view.append("Croquette")
 
             elif(event.key == pygame.K_b):
                 if(title == "Eat"):
-                    if(len(args) > 2):
-                        args.pop();
-                    #if(len(args) > 2):
-                    args.append("Banana")
+                    args_action.append("Banana")
+                    args_view.append("Banana")
 
 
         #elif event.type == pygame.KEYUP:
 
     #for event in pygame.event.get():
 
-    action = function(args)
+    action = function(args_view)
 
 
     pygame.display.flip()
 
     # --- Game logic
     if(action is not None and not done_event):
-        action(args)
+        action(args_action)
         done_event = True
-    #if(action is not None):
+    #if(action is not None and not done_event):
 
 
     # --- Limit to tick_rate frames per second

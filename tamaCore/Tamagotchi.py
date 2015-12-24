@@ -255,6 +255,7 @@ class Tamagotchi:
 
     def eat(self,aliment_name):
         """Eat a given aliment to restore energy, health and increase weight """
+        print "grinch "
         aliment_satiety = aliment_list[aliment_name][0]
         aliment_happyness = aliment_list[aliment_name][1]
         aliment_weight = aliment_list[aliment_name][2]

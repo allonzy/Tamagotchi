@@ -128,15 +128,17 @@ def eat_scene(args):
     if(len(args) > 2):
         font = pygame.font.SysFont('Calibri', 50, True, True)
         text = font.render(args[2].upper(), True, BLACK)
+        function = tama.eat
 
 
     else:
         font = pygame.font.SysFont('Calibri', 25, True, False)
         text = font.render(" CROQUETTE OR BANANA ?", True, BLACK)
+        function = None
 
     screen.blit(text, [5, 450])
 
-    return None
+    return function
 #def eat_scene(tama, scene):
 
 def play_scene(args):
