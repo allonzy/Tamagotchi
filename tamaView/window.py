@@ -125,14 +125,15 @@ def eat_scene(args):
     screen.fill(WHITE)
 
 
-    # if(len(args) > 2):
-    #     font = pygame.font.SysFont('Calibri', 50, True, True)
-    #     text = font.render(args[2].upper(), True, BLACK)
-    #     screen.blit(text, [5, 450])
-    #
-    # else:
-    font = pygame.font.SysFont('Calibri', 25, True, False)
-    text = font.render(" CROQUETTE OR BANANA ?", True, BLACK)
+    if(len(args) > 2):
+        font = pygame.font.SysFont('Calibri', 50, True, True)
+        text = font.render(args[2].upper(), True, BLACK)
+
+
+    else:
+        font = pygame.font.SysFont('Calibri', 25, True, False)
+        text = font.render(" CROQUETTE OR BANANA ?", True, BLACK)
+
     screen.blit(text, [5, 450])
 
     return None

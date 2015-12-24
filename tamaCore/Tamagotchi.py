@@ -160,14 +160,14 @@ class Tamagotchi:
         return self.stat[stat_name]
     #def get_stat(self,stat_name):
 
-    def play(self):
+    def play(self, *args):
         """A method to make the tamagotchi play"""
         #score = miniGamePlay()
         score = {'energy': -5,'happyness': 10,"weight": -5}
         self.modify_stat(score);
     #def_play(self)
 
-    def wash(self):
+    def wash(self, *args):
         """A method to wash the tamagotchi,mainly increase his cleanness"""
         #score = miniGameWash()
         score = {'cleanness': 10,'happyness': -5}
@@ -253,7 +253,7 @@ class Tamagotchi:
         self.sickness["Healthy"] = is_healthy
     #def sick(self):
 
-    def eat(self,aliment_name ):
+    def eat(self,aliment_name):
         """Eat a given aliment to restore energy, health and increase weight """
         aliment_satiety = aliment_list[aliment_name][0]
         aliment_happyness = aliment_list[aliment_name][1]
@@ -262,7 +262,7 @@ class Tamagotchi:
         self.modify_stat(score)
     #def eat(self,aliment ):
 
-    def sleep(self):
+    def sleep(self, *args):
         """A method to restore tamagotchi energy"""
         score = {"energy" : 2}
         self.modify_stat(score)

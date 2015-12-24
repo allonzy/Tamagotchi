@@ -42,66 +42,72 @@ while not done:
                 done_event = False
                 pygame.display.set_caption(title)
                 function = tamaView.window.stats_scene
-            #if(event.key == pygame.K_i):
+                #if(event.key == pygame.K_i):
 
             elif(event.key == pygame.K_m):
                 title = "Tamagotchi"
                 done_event = False
                 pygame.display.set_caption(title)
                 function = tamaView.window.main_scene
-            #elif(event.key == pygame.K_m):
+                #elif(event.key == pygame.K_m):
 
             elif(event.key == pygame.K_w):
                 title = "Wash"
                 done_event = False
                 pygame.display.set_caption(title)
                 function = tamaView.window.wash_scene
-            #elif(event.key == pygame.K_w):
+                #elif(event.key == pygame.K_w):
 
             elif(event.key == pygame.K_e):
                 title = "Eat"
                 done_event = False
                 pygame.display.set_caption(title)
                 function = tamaView.window.eat_scene
-            #elif(event.key == pygame.K_e):
+                #elif(event.key == pygame.K_e):
 
             elif(event.key == pygame.K_p):
                 title = "Play"
                 done_event = False
                 pygame.display.set_caption(title)
                 function = tamaView.window.play_scene
-            #elif(event.key == pygame.K_p):
+                #elif(event.key == pygame.K_p):
 
             elif(event.key == pygame.K_s):
                 title = "Sleep"
                 done_event = False
                 pygame.display.set_caption(title)
                 function = tamaView.window.sleep_scene
-            #elif(event.key == pygame.K_s):
+                #elif(event.key == pygame.K_s):
 
             elif(event.key == pygame.K_c):
                 if(title == "Eat"):
+                    if(len(args) > 2):
+                        args.pop();
+                    #if(len(args) > 2):
                     args.append("Croquette")
 
+            elif(event.key == pygame.K_b):
+                if(title == "Eat"):
+                    if(len(args) > 2):
+                        args.pop();
+                    #if(len(args) > 2):
+                    args.append("Banana")
 
 
         #elif event.type == pygame.KEYUP:
 
+    #for event in pygame.event.get():
+
     action = function(args)
-    if(len(args) > 2):
-        args.pop();
-    #if(len(args) > 2):
+
 
     pygame.display.flip()
 
+    # --- Game logic
     if(action is not None and not done_event):
-        action()
+        action(args)
         done_event = True
     #if(action is not None):
-
-    # --- Game logic
-
-
 
 
     # --- Limit to tick_rate frames per second
@@ -110,11 +116,13 @@ while not done:
     if(tick_count == tick_rate):
         tama.pass_time(1)
         tick_count = 0
-
+    #if(tick_count == tick_rate):
 
 
     if(tama.is_dead()):
         done = True
+#while not done:
+
 # Close the window and quit.
 # If you forget this line, the program will 'hang'
 # on exit if running from IDLE.
