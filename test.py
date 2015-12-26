@@ -7,8 +7,6 @@ import tamaView.window
 
 from tamaView.window_stat import *
 
-
-
 from tamaCore.Tamagotchi import Tamagotchi
 import tamaView.window
 
@@ -24,7 +22,7 @@ pygame.display.set_caption(title)
 function = tamaView.window.main_scene
 done = False
 done_event = False
-
+context = "Main"
 clock = pygame.time.Clock()
 tick_count = 0
 # -------- Main Program Loop -----------
@@ -38,63 +36,69 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
 
-        elif event.type == pygame.KEYUP:
-            if(event.key == pygame.K_i):
-                title = "ID_Card"
-                done_event = False
-                pygame.display.set_caption(title)
-                function = tamaView.window.stats_scene
-                #if(event.key == pygame.K_i):
+        elif(event.type == pygame.MOUSEBUTTONUP):
+            pos = pygame.mouse.get_pos()
+            for button_title, button_items in clickable_zones.items():
+                button_context, button = button_items
+                if(button_context == context):
+                    if(tamaView.window.isin(pos,button)):
+                        title = button_title
+                    #if(tamaView.window.isin(pos,button)):
+                #if(button_context == context):
 
-            elif(event.key == pygame.K_m):
-                title = "Tamagotchi"
-                done_event = False
-                pygame.display.set_caption(title)
-                function = tamaView.window.main_scene
-                #elif(event.key == pygame.K_m):
-
-            elif(event.key == pygame.K_w):
-                title = "Wash"
-                done_event = False
-                pygame.display.set_caption(title)
-                function = tamaView.window.wash_scene
-                #elif(event.key == pygame.K_w):
-
-            elif(event.key == pygame.K_e):
-                title = "Eat"
-                done_event = False
-                pygame.display.set_caption(title)
-                function = tamaView.window.eat_scene
-                #elif(event.key == pygame.K_e):
-
-            elif(event.key == pygame.K_p):
-                title = "Play"
-                done_event = False
-                pygame.display.set_caption(title)
-                function = tamaView.window.play_scene
-                #elif(event.key == pygame.K_p):
-
-            elif(event.key == pygame.K_s):
-                title = "Sleep"
-                done_event = False
-                pygame.display.set_caption(title)
-                function = tamaView.window.sleep_scene
-                #elif(event.key == pygame.K_s):
-
-            elif(event.key == pygame.K_c):
-                if(title == "Eat"):
-                    args_action.append("Croquette")
-                    args_view.append("Croquette")
-
-            elif(event.key == pygame.K_b):
-                if(title == "Eat"):
-                    args_action.append("Banana")
-                    args_view.append("Banana")
-
-
-        #elif event.type == pygame.KEYUP:
+            #for button in  window_stat.clickable_zones:
+        #elif(event.type == pygame.MOUSEBUTTONUP):
 
     #for event in pygame.event.get():
+
+    if(title == "ID Card"):
+        context = "Other"
+        done_event = False
+        function = tamaView.window.stats_scene
+        #if(title == "ID Card"):
+
+    elif(title == "Tamagotchi" or title == "Back"):
+        context = "Main"
+        done_event = False
+        function = tamaView.window.main_scene
+        #elif(title == "Tamagotchi"):
+
+    elif(title == "Wash"):
+        context = "Other"
+        done_event = False
+        function = tamaView.window.wash_scene
+        #elif(title == "Wash"):
+
+    elif(title == "Eat"):
+        context = "Other"
+        done_event = False
+        function = tamaView.window.eat_scene
+        #elif(title == "Eat"):
+
+    elif(title == "Play"):
+        context = "Other"
+        done_event = False
+        function = tamaView.window.play_scene
+        #elif(title == "Play"):
+
+    elif(title == "Sleep"):
+        context = "Other"
+        done_event = False
+        function = tamaView.window.sleep_scene
+        #elif(title == "Sleep"):
+
+    # elif(event.key == pygame.K_c):
+    #     if(title == "Eat"):
+    #         args_action.append("Croquette")
+    #         args_view.append("Croquette")
+    #
+    # elif(event.key == pygame.K_b):
+    #     if(title == "Eat"):
+    #         args_action.append("Banana")
+    #         args_view.append("Banana")
+    # #elif(event.key == pygame.K_c):
+
+    pygame.display.set_caption(title)
 
     action = function(args_view)
 

@@ -13,31 +13,28 @@ def main_scene(args):
 
     screen.fill(WHITE)
 
-    pygame.draw.rect(screen, BLACK, [5, 5, 175, 50], 2)
     font_action = pygame.font.SysFont('Calibri', 25, True, False)
+
+    pygame.draw.rect(screen, BLACK, [5, 5, 175, 50], 2)
     text = font_action.render("WASH", True, GREEN)
     screen.blit(text, [10, 10])
 
 
     pygame.draw.rect(screen, BLACK, [5, 180, 175, 50], 2)
-    font_action = pygame.font.SysFont('Calibri', 25, True, False)
     text = font_action.render("PLAY", True, GREEN)
     screen.blit(text, [10, 190])
 
 
     pygame.draw.rect(screen, BLACK, [5, 350, 175, 50], 2)
-    font_action = pygame.font.SysFont('Calibri', 25, True, False)
     text = font_action.render("EAT", True, GREEN)
     screen.blit(text, [10, 360])
 
 
     pygame.draw.rect(screen, BLACK, [200, 5, 175, 50], 2)
-    font_action = pygame.font.SysFont('Calibri', 25, True, False)
     text = font_action.render("SLEEP", True, GREEN)
     screen.blit(text, [210, 10])
 
     pygame.draw.rect(screen, BLACK, [200, 180, 175, 50], 2)
-    font_action = pygame.font.SysFont('Calibri', 25, True, False)
     text = font_action.render("ID CARD", True, GREEN)
     screen.blit(text, [210, 190])
 
@@ -52,12 +49,14 @@ def stats_scene(args):
 
     # --- Drawing code should go here
 
-    # First, clear the screen to white. Don't put other drawing commands
-    # above this, or they will be erased with this command.
     screen.fill(WHITE)
 
-    # Select the font to use, size, bold, italics
     font = pygame.font.SysFont('Calibri', 25, True, False)
+
+    button_text, button_zone = clickable_zones["Back"]
+    pygame.draw.rect(screen, BLACK, button_zone, 2)
+    text = font.render("Back", True, GREEN)
+    screen.blit(text, [button_zone[0] + 5, button_zone[1] + 5])
 
     posY = default_posY
     posX = default_posX
@@ -92,10 +91,11 @@ def stats_scene(args):
     posY += 5
     #Stats
     for stat, value in tama.get_all_stat().items():
-        text = font.render(stat.upper() + ": " + str(math.trunc(value)), True, BLACK)
-        screen.blit(text, [posX, posY])
-        posY += 30
-
+        if(stat not in ["age", "expectancy"]):
+            text = font.render(stat.upper() + ": " + str(math.trunc(value)), True, BLACK)
+            screen.blit(text, [posX, posY])
+            posY += 30
+        #if(stat not in ["age", "expectancy"]):
     #for stat, value in get_all_stats().items():
 
     return None
@@ -169,3 +169,16 @@ def sleep_scene(args):
 
     return tama.sleep
 #def sleep_scene(tama, scene):
+
+def isin(pos, zone):
+    """ Determines if pos is in the area determined by zone """
+    i = zone[0] # Horizontal beginning
+    j = zone[1] # Vertical beginning
+    xlim = zone[2] # Width
+    ylim = zone[3] # Height
+    POSX, POSY = pos # Positions
+
+    return(POSX >= i and POSX <= xlim + i \
+            and POSY >= j and POSY <= ylim + j)
+
+#def isin(pos, zone):
