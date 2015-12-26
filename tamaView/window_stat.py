@@ -15,8 +15,8 @@ PI = 3.141592653
 
 # Set the height and width of the screen
 height = 700
-width = 700
-size = (height, width)
+width = 1000
+size = (width, height)
 
 #Set the title of the screen
 title = "Tamagotchi"
@@ -37,5 +37,5 @@ clickable_zones = {
 "Eat" : ("Main", [5, 350, 175, 50]),
 "Sleep" : ("Main", [200, 5, 175, 50]),
 "ID Card" : ("Main", [200, 180, 175, 50]),
-"Back" : ("Other", [5, width - 60, 50, 50])
+"Back" : ("Other", [5, height - 60, 50, 50])
 }

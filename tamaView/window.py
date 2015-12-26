@@ -6,14 +6,28 @@ import math
 
 from window_stat import *
 
+def draw_background(screen, context):
+    """Prepares the screens basics: font, background..."""
+    screen.fill(WHITE)
+
+    font = pygame.font.SysFont('Calibri', 25, True, False)
+
+    if(context != "Main"):
+        button_text, button_zone = clickable_zones["Back"]
+        pygame.draw.rect(screen, BLACK, button_zone, 2)
+        text = font.render("Back", True, GREEN)
+        screen.blit(text, [button_zone[0] + 5, button_zone[1] + 5])
+    #if(context != "Main"):
+
+    return font
+#def draw_background(screen):
+
 def main_scene(args):
     """ Creates the main window of the game """
     tama = args[0]
     screen = args[1]
 
-    screen.fill(WHITE)
-
-    font_action = pygame.font.SysFont('Calibri', 25, True, False)
+    font_action = draw_background(screen, "Main")
 
     pygame.draw.rect(screen, BLACK, [5, 5, 175, 50], 2)
     text = font_action.render("WASH", True, GREEN)
@@ -49,14 +63,7 @@ def stats_scene(args):
 
     # --- Drawing code should go here
 
-    screen.fill(WHITE)
-
-    font = pygame.font.SysFont('Calibri', 25, True, False)
-
-    button_text, button_zone = clickable_zones["Back"]
-    pygame.draw.rect(screen, BLACK, button_zone, 2)
-    text = font.render("Back", True, GREEN)
-    screen.blit(text, [button_zone[0] + 5, button_zone[1] + 5])
+    font = draw_background(screen, "Other")
 
     posY = default_posY
     posX = default_posX
@@ -106,9 +113,7 @@ def wash_scene(args):
     tama = args[0]
     screen = args[1]
 
-    screen.fill(WHITE)
-
-    font = pygame.font.SysFont('Calibri', 25, True, False)
+    font = draw_background(screen, "Other")
 
     text = font.render(" YOU WASHED THE TAMAGOTCHI ", True, BLACK)
     screen.blit(text, [5, 450])
@@ -122,17 +127,15 @@ def eat_scene(args):
     tama = args[0]
     screen = args[1]
 
-    screen.fill(WHITE)
+    font = draw_background(screen, "Other")
 
 
     if(len(args) > 2):
-        font = pygame.font.SysFont('Calibri', 50, True, True)
         text = font.render(args[2].upper(), True, BLACK)
         function = tama.eat
 
 
     else:
-        font = pygame.font.SysFont('Calibri', 25, True, False)
         text = font.render(" CROQUETTE OR BANANA ?", True, BLACK)
         function = None
 
@@ -145,9 +148,7 @@ def play_scene(args):
     """ Makes the Tamagotchi play """
     tama = args[0]
     screen = args[1]
-    screen.fill(WHITE)
-
-    font = pygame.font.SysFont('Calibri', 25, True, False)
+    font = draw_background(screen, "Other")
 
     text = font.render(" YOU PLAYED WITH THE TAMAGOTCHI ", True, BLACK)
     screen.blit(text, [5, 450])
@@ -160,9 +161,7 @@ def sleep_scene(args):
     """ Makes the Tamagotchi sleep"""
     tama = args[0]
     screen = args[1]
-    screen.fill(WHITE)
-
-    font = pygame.font.SysFont('Calibri', 25, True, False)
+    font = draw_background(screen, "Other")
 
     text = font.render(" ZZZZZZZZZZZZZZZZZZZZZZZZ ", True, BLACK)
     screen.blit(text, [5, 450])
