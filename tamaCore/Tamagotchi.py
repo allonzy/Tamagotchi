@@ -253,9 +253,10 @@ class Tamagotchi:
         self.sickness["Healthy"] = is_healthy
     #def sick(self):
 
-    def eat(self,aliment_name):
+    def eat(self, *args):
         """Eat a given aliment to restore energy, health and increase weight """
-        print "grinch "
+        #//!\\ Modified the arguments to fit the use of the functions @KirikouLovelace 
+        aliment_name = args[0][0]
         aliment_satiety = aliment_list[aliment_name][0]
         aliment_happyness = aliment_list[aliment_name][1]
         aliment_weight = aliment_list[aliment_name][2]

@@ -17,11 +17,13 @@ pygame.init()
 screen = pygame.display.set_mode(size)
 
 
-title = "Tamagotchi"
+view = "Tamagotchi"
 pygame.display.set_caption(title)
 function = tamaView.window.main_scene
 done = False
 done_event = False
+# The context of the window: Main or Other
+# The secondary context is defined by the title of the screen
 context = "Main"
 clock = pygame.time.Clock()
 tick_count = 0
@@ -40,73 +42,68 @@ while not done:
             pos = pygame.mouse.get_pos()
             for button_title, button_items in clickable_zones.items():
                 button_context, button = button_items
-                if(button_context == context):
+                if(button_context in [context, title]):
+                    #//!\\ TODO: Context thing, there must be a way to make it eat
                     if(tamaView.window.isin(pos,button)):
-                        title = button_title
+                        view = button_title
+                        done_event = False
                     #if(tamaView.window.isin(pos,button)):
                 #if(button_context == context):
-
             #for button in  window_stat.clickable_zones:
         #elif(event.type == pygame.MOUSEBUTTONUP):
-
     #for event in pygame.event.get():
 
-    if(title == "ID Card"):
+    #The default title is the button name
+    title = view
+
+    if(view == "ID Card"):
         context = "Other"
-        done_event = False
         function = tamaView.window.stats_scene
-        #if(title == "ID Card"):
+        #if(view == "ID Card"):
 
-    elif(title == "Tamagotchi" or title == "Back"):
+    elif(view == "Tamagotchi" or view == "Back"):
+        title = "Tamagotchi"
         context = "Main"
-        done_event = False
         function = tamaView.window.main_scene
-        #elif(title == "Tamagotchi"):
+        #elif(view == "Tamagotchi" or view == "Back"):
 
-    elif(title == "Wash"):
+    elif(view == "Wash"):
         context = "Other"
-        done_event = False
         function = tamaView.window.wash_scene
-        #elif(title == "Wash"):
+        #elif(view == "Wash"):
 
-    elif(title == "Eat"):
+    elif(view == "Eat"):
         context = "Other"
-        done_event = False
         function = tamaView.window.eat_scene
-        #elif(title == "Eat"):
+        #elif(view == "Eat"):
 
-    elif(title == "Play"):
+    elif(view == "Play"):
         context = "Other"
-        done_event = False
         function = tamaView.window.play_scene
-        #elif(title == "Play"):
+        #elif(view == "Play"):
 
-    elif(title == "Sleep"):
+    elif(view == "Sleep"):
         context = "Other"
-        done_event = False
         function = tamaView.window.sleep_scene
-        #elif(title == "Sleep"):
+        #elif(view == "Sleep"):
 
-    # elif(event.key == pygame.K_c):
-    #     if(title == "Eat"):
-    #         args_action.append("Croquette")
-    #         args_view.append("Croquette")
-    #
-    # elif(event.key == pygame.K_b):
-    #     if(title == "Eat"):
-    #         args_action.append("Banana")
-    #         args_view.append("Banana")
-    # #elif(event.key == pygame.K_c):
+    elif(view == "Croquette" or view == "Banana"):
+        title = "Eat"
+        context = "Other"
+        args_action.append(view)
+        args_view.append(view)
+        function = tamaView.window.eat_scene
+        #elif(title == "Croquette" or title == "Banana"):
 
     pygame.display.set_caption(title)
 
     action = function(args_view)
 
-
     pygame.display.flip()
 
     # --- Game logic
     if(action is not None and not done_event):
+        print "grinch "
         action(args_action)
         done_event = True
     #if(action is not None and not done_event):

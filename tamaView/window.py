@@ -131,15 +131,27 @@ def eat_scene(args):
 
 
     if(len(args) > 2):
-        text = font.render(args[2].upper(), True, BLACK)
+        message = "YOU GAVE " + args[2].upper() + " TO THE TAMAGOTCHI"
+        text = font.render(message, True, BLACK)
+        screen.blit(text, [5, 450])
         function = tama.eat
-
+        #if(len(args) > 2):
 
     else:
-        text = font.render(" CROQUETTE OR BANANA ?", True, BLACK)
-        function = None
+        # text = font.render(" CROQUETTE OR BANANA ?", True, BLACK)
 
-    screen.blit(text, [5, 450])
+        button_text, button_zone = clickable_zones["Croquette"]
+        pygame.draw.rect(screen, BLACK, button_zone, 2)
+        text = font.render("Croquette", True, GREEN)
+        screen.blit(text, [button_zone[0] + width / 2 - 10, button_zone[1] + height / 4 - 10])
+
+        button_text, button_zone = clickable_zones["Banana"]
+        pygame.draw.rect(screen, BLACK, button_zone, 2)
+        text = font.render("Banana", True, GREEN)
+        screen.blit(text, [button_zone[0] + width / 2 - 10, button_zone[1] + height / 4 - 10])
+
+        function = None
+    #else(if(len(args) > 2):)
 
     return function
 #def eat_scene(tama, scene):

@@ -37,5 +37,7 @@ clickable_zones = {
 "Eat" : ("Main", [5, 350, 175, 50]),
 "Sleep" : ("Main", [200, 5, 175, 50]),
 "ID Card" : ("Main", [200, 180, 175, 50]),
-"Back" : ("Other", [5, height - 60, 50, 50])
+"Back" : ("Other", [5, height - 60, 50, 50]),
+"Croquette" : ("Eat", [5, 5, width - 10, height / 2 - 10]),
+"Banana" : ("Eat", [5, height / 2 + 5, width - 10, height / 2 - 10])
 }
