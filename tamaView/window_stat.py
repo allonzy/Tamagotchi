@@ -51,3 +51,6 @@ context = "Main"
 done_event = False
 
 clock = None
+
+#Set the default values of the body's position
+bodysposition = [500, 500]

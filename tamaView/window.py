@@ -32,6 +32,7 @@ def updateScreen(tama, screen, done):
         Return: the tamagotchi's action, the arguments of that action, and the
             quit boolean
     """
+
     global clock
     global view
     global title
@@ -105,6 +106,8 @@ def updateScreen(tama, screen, done):
     pygame.display.set_caption(title)
 
     action = function(args_view)
+
+    move(tama)
 
     pygame.display.flip()
     clock.tick(tick_rate)
@@ -301,3 +304,13 @@ def isin(pos, zone):
             and POSY >= j and POSY <= ylim + j)
 
 #def isin(pos, zone):
+
+def move(tama):
+    """ Displays the tamagotchi's picture """
+    global bodysposition
+    tamaClass = tama.get_stat("specie")
+
+    image = pygame.image.load("tamaView/" + tamaClass + "/body.gif").convert()
+
+    screen.blit(image, bodysposition)
+#def move(tama):
