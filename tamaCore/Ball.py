@@ -1,3 +1,5 @@
+from tamaCore.Tamagotchi import Tamagotchi
+
 class Ball(Tamagotchi):
 	"""Define a Ball """
 	 def __init__(self):
@@ -10,5 +12,5 @@ class Ball(Tamagotchi):
     def evolve(self):
         """Change an animal on another when age raise 4"""
         if (self.getStat(age) > 4 )
-            self.__class__ = cat
+            self.__class__ = Cat
     #def evolve(self):

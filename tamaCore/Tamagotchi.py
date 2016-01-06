@@ -5,6 +5,10 @@ from sickness import *
 from aliment import *
 import pickle
 import time
+
+from tamaCore.Ball import Ball
+from tamaCore.Cat import Cat
+
 class Tamagotchi:
 
     """The core class who describe a tamagotchi(the animal)
