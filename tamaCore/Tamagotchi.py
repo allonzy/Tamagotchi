@@ -6,7 +6,7 @@ from aliment import *
 import pickle
 import time
 
-class Tamagotchi:
+class Tamagotchi():
 
     """The core class who describe a tamagotchi(the animal)
 
@@ -76,8 +76,9 @@ class Tamagotchi:
 
     + get_stat(): dict[stat] = stat_value
 
-    + evolve(): change an animal on another
+    + evolve(): change an animal on another when the contition is good
 
+    +evolveIn(name):change an animal on another with his name
    """
 
     def __init__(self):
@@ -121,7 +122,7 @@ class Tamagotchi:
         self.stat_regen['cleanness'] = -0.2
         self.stat_regen['energy'] = -0.2
         self.stat_regen['satiety'] = -0.5
-        self.stat_regen['age'] = 0.00046
+        self.stat_regen['age'] = 2
     #def _init_stat_regen(self):
 
     def debuff(self):
@@ -341,6 +342,8 @@ class Tamagotchi:
     def evolve(self):
         """Empty"""
     #def evolve(self):
-
+    def change(self):
+        """Empty"""
+    #def change(self):
 
 #class Tamagotchi:
