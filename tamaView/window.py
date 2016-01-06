@@ -310,7 +310,7 @@ def move(tama):
     global bodysposition
     tamaClass = tama.get_stat("specie")
 
-    image = pygame.image.load("tamaView/" + tamaClass + "/body.gif").convert()
+    image = pygame.image.load("tamaView/" + tamaClass + "/body.png").convert()
 
     screen.blit(image, bodysposition)
 #def move(tama):

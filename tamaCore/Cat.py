@@ -5,6 +5,6 @@ class Cat(Tamagotchi):
 	 def __init__(self):
         """initialize all the stat of a tamagotchi"""
 		super(Tamagotchi,self).__init__()
-		self.specie = " Cat"
+		self.specie = "Cat"
 		self.name = "Cat"
     #def___init__(self)
