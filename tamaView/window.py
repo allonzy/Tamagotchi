@@ -308,6 +308,9 @@ def isin(pos, zone):
 def move(tama, screen):
     """ Displays the tamagotchi's picture """
     global bodysposition
+    global bodysmovers
+    global X_SPEED
+    global Y_SPEED
     # tamaClass = tama.get_stat("specie")
     tamaClass = tama.specie
 
@@ -317,19 +320,23 @@ def move(tama, screen):
     bodysposition[0] += bodysmovers[0]
     bodysposition[1] += bodysmovers[1]
 
+    #
+    # print "grinch ", X_SPEED, " ", bodysmovers[0], " ", bodysposition[0], " ", BODYSLIMITS["X_MAX_LIM"]
+    # print "grinch2 ", Y_SPEED, " ", bodysmovers[1], " ", bodysposition[1], " ", BODYSLIMITS["Y_MAX_LIM"]
+    #
+
+    if(bodysposition[0] >= BODYSLIMITS["X_MAX_LIM"] or bodysposition[0] <= BODYSLIMITS["X_MIN_LIM"]):
+        bodysmovers[0] = -X_SPEED
+        bodysmovers[1] = -Y_SPEED
+        X_SPEED = -X_SPEED
+        Y_SPEED = -Y_SPEED
+    #if(bodysposition[0] >= BODYSLIMITS["X_MAX_LIM"]):
+
     if(bodysposition[1] <= BODYSLIMITS["Y_MAX_LIM"]):
-        bodysmovers[1] = 5
-        #if(bodysposition[0] >= 550):
+        bodysmovers[1] = -Y_SPEED
+        Y_SPEED = -Y_SPEED
+    #if(bodysposition[1] <= BODYSLIMITS["Y_MAX_LIM"]):
 
-    if(bodysposition[0] >= BODYSLIMITS["X_MAX_LIM"]):
-        bodysmovers[0] = -5
-        #if(bodysposition[0] >= 600):
 
-    if(bodysposition[1] >= BODYSLIMITS["Y_MIN_LIM"]):
-        bodysmovers[1] = -5
-        #if(bodysposition[1] >= 500):
 
-    if(bodysposition[0] <= BODYSLIMITS["X_MIN_LIM"]):
-        bodysmovers[0] = 5
-        #if(bodysposition[0] <= 500):
 #def move(tama):

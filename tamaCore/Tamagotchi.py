@@ -213,7 +213,7 @@ class Tamagotchi():
     def is_dead(self):
         """return true if dead false else"""
         if self.get_stat("age") >= self.get_maxStat("age"):#mort de viellesse
-            return true
+            return True
         return self.sickness ["Dead"]
         #if self.sickness ["Dead"]:
     #def is_dead(self):

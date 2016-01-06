@@ -8,13 +8,13 @@ class Ball(Tamagotchi):
         self.change()
     #def___init__(self)
     def change(self):
-        """what change for a Ball """
+        """what changes for a Ball """
         self.name = "Ball"
         self.specie = "Ball"
 
     #END_def
     def evolve(self):
-        """Change an animal on another when age has come"""
+        """Change an animal on another when time has come"""
         if self.get_stat("age") > 6:
             cleanness = self.get_stat("cleanness")
             happyness = self.get_stat("happyness")

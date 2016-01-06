@@ -14,8 +14,8 @@ RED = (255, 0, 0)
 PI = 3.141592653
 
 # Set the height and width of the screen
-height = 700
-width = 1000
+height = 600
+width = 800
 size = (width, height)
 
 #Set the title of the screen
@@ -53,11 +53,17 @@ done_event = False
 clock = None
 
 #Set the default values of the body's position
+BODYSDEFAULT_POS_X = 300
+BODYSDEFAULT_POS_Y = 300
+
 BODYSLIMITS = {
-"X_MAX_LIM" : 700,
-"X_MIN_LIM" : 500,
-"Y_MAX_LIM" : 400,
-"Y_MIN_LIM" : 500
+"X_MAX_LIM" : BODYSDEFAULT_POS_X + 200,
+"X_MIN_LIM" : BODYSDEFAULT_POS_X,
+"Y_MAX_LIM" : BODYSDEFAULT_POS_Y - 100,
 }
-bodysposition = [500, 500]
-bodysmovers = [5, -5]
+
+X_SPEED = 2
+Y_SPEED = -2
+
+bodysposition = [BODYSDEFAULT_POS_X, BODYSDEFAULT_POS_Y]
+bodysmovers = [X_SPEED, Y_SPEED]
