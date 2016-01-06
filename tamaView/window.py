@@ -37,7 +37,7 @@ def updateScreen(tama, screen, done):
     global view
     global title
     global context
-    global done_event
+    done_event = True
 
     args_view = [tama, screen]
     args_action = []
@@ -113,7 +113,7 @@ def updateScreen(tama, screen, done):
     clock.tick(tick_rate)
 
 
-    return(action, args_action, done)
+    return(action, args_action, done, done_event)
 #def updateScreen(tama, screen, clock):
 
 

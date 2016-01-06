@@ -7,8 +7,8 @@ from tamaCore.Tamagotchi import Tamagotchi
 from tamaCore.Ball import Ball
 from tamaCore.Cat import Cat
 def main():
-    global done_event
 
+    done_event = False
     tama = Ball()
 
     screen, clock = window.start()
@@ -20,8 +20,7 @@ def main():
 
     while(not done):
         #update Graphics
-        action, args_action, done = window.updateScreen(tama, screen, done)
-
+        action, args_action, done, done_event = window.updateScreen(tama, screen, done)
         # --- Game logic
         if(action is not None and not done_event):
             action(args_action)

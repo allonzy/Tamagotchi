@@ -50,7 +50,6 @@ title = "Tamagotchi"
 # The context of the window: Main or Other
 # The secondary context is defined by the title of the screen
 context = "Main"
-done_event = False
 
 clock = None
 
