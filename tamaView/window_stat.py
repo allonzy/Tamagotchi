@@ -53,4 +53,11 @@ done_event = False
 clock = None
 
 #Set the default values of the body's position
+BODYSLIMITS = {
+"X_MAX_LIM" : 700,
+"X_MIN_LIM" : 500,
+"Y_MAX_LIM" : 400,
+"Y_MIN_LIM" : 500
+}
 bodysposition = [500, 500]
+bodysmovers = [5, -5]

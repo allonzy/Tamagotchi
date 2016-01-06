@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
-#//!\\ TODO Give the bitch a body and make it move!
+
 import pygame
 import math
 
@@ -107,7 +107,7 @@ def updateScreen(tama, screen, done):
 
     action = function(args_view)
 
-    move(tama)
+    move(tama, screen)
 
     pygame.display.flip()
     clock.tick(tick_rate)
@@ -305,12 +305,31 @@ def isin(pos, zone):
 
 #def isin(pos, zone):
 
-def move(tama):
+def move(tama, screen):
     """ Displays the tamagotchi's picture """
     global bodysposition
-    tamaClass = tama.get_stat("specie")
+    # tamaClass = tama.get_stat("specie")
+    tamaClass = tama.specie
 
-    image = pygame.image.load("tamaView/" + tamaClass + "/body.png").convert()
+    image = pygame.image.load("tamaCore/" + tamaClass + "/images/body.png")
 
     screen.blit(image, bodysposition)
+    bodysposition[0] += bodysmovers[0]
+    bodysposition[1] += bodysmovers[1]
+
+    if(bodysposition[1] <= BODYSLIMITS["Y_MAX_LIM"]):
+        bodysmovers[1] = 5
+        #if(bodysposition[0] >= 550):
+
+    if(bodysposition[0] >= BODYSLIMITS["X_MAX_LIM"]):
+        bodysmovers[0] = -5
+        #if(bodysposition[0] >= 600):
+
+    if(bodysposition[1] >= BODYSLIMITS["Y_MIN_LIM"]):
+        bodysmovers[1] = -5
+        #if(bodysposition[1] >= 500):
+
+    if(bodysposition[0] <= BODYSLIMITS["X_MIN_LIM"]):
+        bodysmovers[0] = 5
+        #if(bodysposition[0] <= 500):
 #def move(tama):

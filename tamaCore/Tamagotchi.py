@@ -6,9 +6,6 @@ from aliment import *
 import pickle
 import time
 
-from tamaCore.Ball import Ball
-from tamaCore.Cat import Cat
-
 class Tamagotchi:
 
     """The core class who describe a tamagotchi(the animal)
@@ -86,7 +83,7 @@ class Tamagotchi:
     def __init__(self):
         """initialize all the stat of a tamagotchi"""
         self.name = "Tamagotchi"
-        self.specie = " none"
+        self.specie = "none"
         self.sickness = dict.fromkeys(sickness_list.keys(),False)
         self.sickness["Healthy"] = True
         self.statKey = ('health','age','expectancy','weight',\
@@ -141,7 +138,7 @@ class Tamagotchi:
             #for sick in self.sickness:
         #if self.sickness["Healthy"] == False:
     #def debuff(self):
-    
+
     def set_stat(self,stat_name,stat_value):
         """Set a stat to a given value"""
         self.stat[stat_name] = stat_value
@@ -164,7 +161,7 @@ class Tamagotchi:
     #def_modify_stat(self,score)
 
     def get_stat(self,stat_name):
-        """Return the value of a stat by his name //get_stat(stat_name)"""
+        """Return the value of a stat by its name //get_stat(stat_name)"""
         return self.stat[stat_name]
     #def get_stat(self,stat_name):
 
@@ -344,6 +341,6 @@ class Tamagotchi:
     def evolve(self):
         """Empty"""
     #def evolve(self):
-    
+
 
 #class Tamagotchi:
