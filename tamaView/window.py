@@ -25,6 +25,13 @@ def quit():
     pygame.quit()
 #def quit():
 def updateScreen(tama, screen, done):
+    """
+        The main window event
+
+        Arguments: The tamagotchi, the screen, and the quit boolean
+        Return: the tamagotchi's action, the arguments of that action, and the
+            quit boolean
+    """
     global clock
     global view
     global title
