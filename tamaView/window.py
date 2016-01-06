@@ -159,13 +159,28 @@ def main_scene(args):
     text = font_action.render("SLEEP", True, GREEN)
     screen.blit(text, [210, 10])
 
-    pygame.draw.rect(screen, BLACK, [200, 180, 175, 50], 2)
-    text = font_action.render("ID CARD", True, GREEN)
-    screen.blit(text, [210, 190])
+    image = draw_button(screen, "ID Card", clickable_zones["ID Card"])
+    # pygame.draw.rect(screen, BLACK, [200, 180, 175, 50], 2)
+    # text = font_action.render("ID CARD", True, GREEN)
+    screen.blit(image, [205, 180])
 
     return None
 
 #def main_window(screen)
+
+def draw_button(screen, title, click_zone):
+    """
+        Draws a button on a clickable zone
+
+        Arguments: the screen and the font to use
+        Return: the image to blit
+    """
+    context, zone = click_zone
+    pygame.draw.rect(screen, BLACK, zone, 2)
+    image = pygame.image.load("tamaView/images/"+ title + ".png")
+
+    return image
+#def draw_button(font_action):
 
 def stats_scene(args):
     """ Prints Tamagotchi's stats """

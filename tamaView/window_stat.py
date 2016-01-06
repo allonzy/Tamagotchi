@@ -40,6 +40,8 @@ clickable_zones = {
 "Back" : ("Other", [5, height - 60, 50, 50]),
 "Croquette" : ("Eat", [5, 5, width - 10, height / 2 - 10]),
 "Banana" : ("Eat", [5, height / 2 + 5, width - 10, height / 2 - 10])
+# "Croquette" : ("Main", [5, 350, 50, 50]),
+# "Banana" : ("Main", [5, 410, 50, 50])
 }
 
 #Set the default values of the window
