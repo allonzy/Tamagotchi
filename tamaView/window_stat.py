@@ -41,3 +41,13 @@ clickable_zones = {
 "Croquette" : ("Eat", [5, 5, width - 10, height / 2 - 10]),
 "Banana" : ("Eat", [5, height / 2 + 5, width - 10, height / 2 - 10])
 }
+
+#Set the default values of the window
+view = "Tamagotchi"
+title = "Tamagotchi"
+# The context of the window: Main or Other
+# The secondary context is defined by the title of the screen
+context = "Main"
+done_event = False
+
+clock = None

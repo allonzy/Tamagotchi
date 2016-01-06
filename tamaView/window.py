@@ -7,9 +7,105 @@ import math
 from window_stat import *
 
 def start():
-    """ Starts the pygame engine and the screen """
-    pass
+    """
+        Starts the pygame engine and the screen
+        Return : the screen to display
+    """
+    global clock
+    pygame.init()
+    screen = pygame.display.set_mode(size)
+    pygame.display.set_caption(title)
+    clock = pygame.time.Clock()
+
+    return screen, clock
 #def start():
+
+def quit():
+    """ Ferme la fenêtre et quitte le jeu """
+    pygame.quit()
+#def quit():
+def updateScreen(tama, screen, done):
+    global clock
+    global view
+    global title
+    global context
+    global done_event
+
+    args_view = [tama, screen]
+    args_action = []
+
+    for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
+            done = True
+
+        elif(event.type == pygame.MOUSEBUTTONUP):
+            pos = pygame.mouse.get_pos()
+            for button_title, button_items in clickable_zones.items():
+                button_context, button = button_items
+                if(button_context in [context, title]):
+                    if(isin(pos,button)):
+                        view = button_title
+                        done_event = False
+                    #if(isin(pos,button)):
+                #if(button_context == context):
+            #for button in clickable_zones.items():
+        #elif(event.type == pygame.MOUSEBUTTONUP):
+    #for event in pygame.event.get():
+
+    #The default title is the button name
+    title = view
+
+    if(view == "ID Card"):
+        context = "Other"
+        function = stats_scene
+        #if(view == "ID Card"):
+
+    elif(view == "Tamagotchi" or view == "Back"):
+        title = "Tamagotchi"
+        context = "Main"
+        function = main_scene
+        #elif(view == "Tamagotchi" or view == "Back"):
+
+    elif(view == "Wash"):
+        context = "Other"
+        function = wash_scene
+        #elif(view == "Wash"):
+
+    elif(view == "Eat"):
+        context = "Other"
+        function = eat_scene
+        #elif(view == "Eat"):
+
+    elif(view == "Play"):
+        context = "Other"
+        function = play_scene
+        #elif(view == "Play"):
+
+    elif(view == "Sleep"):
+        context = "Other"
+        function = sleep_scene
+        #elif(view == "Sleep"):
+
+    elif(view == "Croquette" or view == "Banana"):
+        title = "Eat"
+        context = "Other"
+        args_action.append(view)
+        args_view.append(view)
+        function = eat_scene
+        #elif(title == "Croquette" or title == "Banana"):
+
+    pygame.display.set_caption(title)
+
+    action = function(args_view)
+
+    pygame.display.flip()
+    clock.tick(tick_rate)
+
+
+    return(action, args_action, done)
+#def updateScreen(tama, screen, clock):
+
 
 def draw_background(screen, context):
     """Prepares the screens basics: font, background..."""

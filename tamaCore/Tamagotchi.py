@@ -115,8 +115,7 @@ class Tamagotchi:
         self.stat_regen['health'] = 0.33
         self.stat_regen['cleanness'] = -0.2
         self.stat_regen['energy'] = -0.2
-
-
+        self.stat_regen['satiety'] = -0.5
         self.stat_regen['age'] = 0.00046
     #def _init_stat_regen(self):
 
@@ -134,6 +133,7 @@ class Tamagotchi:
             #for sick in self.sickness:
         #if self.sickness["Healthy"] == False:
     #def debuff(self):
+    
     def set_stat(self,stat_name,stat_value):
         """Set a stat to a given value"""
         self.stat[stat_name] = stat_value
@@ -255,7 +255,7 @@ class Tamagotchi:
 
     def eat(self, *args):
         """Eat a given aliment to restore energy, health and increase weight """
-        #//!\\ Modified the arguments to fit the use of the functions @KirikouLovelace 
+        #//!\\ Modified the arguments to fit the use of the functions @KirikouLovelace
         aliment_name = args[0][0]
         aliment_satiety = aliment_list[aliment_name][0]
         aliment_happyness = aliment_list[aliment_name][1]
