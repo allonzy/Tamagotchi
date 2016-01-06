@@ -4,11 +4,12 @@
 import tamaView.window as window
 from tamaView.window_stat import *
 from tamaCore.Tamagotchi import Tamagotchi
-
+from tamaCore.Ball import Ball
+from tamaCore.Cat import Cat
 def main():
     global done_event
 
-    tama = Tamagotchi()
+    tama = Ball()
 
     screen, clock = window.start()
     function = window.main_scene
