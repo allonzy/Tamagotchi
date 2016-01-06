@@ -5,6 +5,10 @@ from sickness import *
 from aliment import *
 import pickle
 import time
+
+from tamaCore.Ball import Ball
+from tamaCore.Cat import Cat
+
 class Tamagotchi:
 
     """The core class who describe a tamagotchi(the animal)
@@ -74,11 +78,15 @@ class Tamagotchi:
     + load(): float // load a game and return the time since the last connection
 
     + get_stat(): dict[stat] = stat_value
+
+    + evolve(): change an animal on another
+
    """
 
     def __init__(self):
         """initialize all the stat of a tamagotchi"""
         self.name = "Tamagotchi"
+        self.specie = " none"
         self.sickness = dict.fromkeys(sickness_list.keys(),False)
         self.sickness["Healthy"] = True
         self.statKey = ('health','age','expectancy','weight',\
@@ -283,6 +291,7 @@ class Tamagotchi:
         self.sick()
         self.heal()
         self.debuff()
+        self.evolve()
 
     #END_def
 
@@ -331,8 +340,10 @@ class Tamagotchi:
             now_time = time.time()
 
             return (now_time - old_time)/60
-
-
     #def load_game
+    def evolve(self):
+        """Empty"""
+    #def evolve(self):
+    
 
 #class Tamagotchi:
