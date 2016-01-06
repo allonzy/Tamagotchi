@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 # coding=utf-8
-#//!\\ TODO Fix EAT scene, divide functions into print and do
+#//!\\ TODO Give the bitch a body and make it move!
 import pygame
 import math
 
 from window_stat import *
+
+def start():
+    """ Starts the pygame engine and the screen """
+    pass
+#def start():
 
 def draw_background(screen, context):
     """Prepares the screens basics: font, background..."""
