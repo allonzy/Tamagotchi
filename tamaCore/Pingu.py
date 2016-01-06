@@ -1,8 +1,8 @@
 from Tamagotchi import *
 from SpeciesList import *
 
-class Cat(Tamagotchi):
-    """Define a cat """
+class Pingu(Tamagotchi):
+    """Define a Pingu """
     def __init__():
         """initialize all the stat of a tamagotchi"""
         Tamagotchi.__init__(self)
@@ -10,7 +10,8 @@ class Cat(Tamagotchi):
     #def___init__(self)
 
     def change(self):
-        """what change for a Cat """
-        self.name = "Cat"
-        self.specie = "Cat"
+        """what change for a Pingu """
+        self.name = "Pingu"
+        self.specie = "Pingu"
+        self.set_stat("health", 80)
     #END_def

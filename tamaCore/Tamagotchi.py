@@ -64,6 +64,14 @@ class Tamagotchi():
 
     + get_stat(string stat ): float/string(depend on the stat)
 
+    +get_maxStat
+
+    +set_maxStat
+
+    +get_regenStat
+
+    +set_regenStat
+
     + pass_time(int time): void
 
     + modify_stat(int stat[])
@@ -140,16 +148,6 @@ class Tamagotchi():
         #if self.sickness["Healthy"] == False:
     #def debuff(self):
 
-    def set_stat(self,stat_name,stat_value):
-        """Set a stat to a given value"""
-        self.stat[stat_name] = stat_value
-        if self.stat[stat_name] <= 0:
-            self.stat[stat_name] = 0
-        #if self.stat[stat_name] < 0:
-        elif self.stat[stat_name] > self.stat_max[stat_name]:
-            self.stat[stat_name] = self.stat_max[stat_name]
-        #elif self.stat[stat_name] > 100:
-    #def set_stat(self,stat_name):
 
     def modify_stat(self,score):
         """
@@ -165,6 +163,37 @@ class Tamagotchi():
         """Return the value of a stat by its name //get_stat(stat_name)"""
         return self.stat[stat_name]
     #def get_stat(self,stat_name):
+
+    def set_stat(self,stat_name,stat_value):
+        """Set a stat to a given value"""
+        self.stat[stat_name] = stat_value
+        if self.stat[stat_name] <= 0:
+            self.stat[stat_name] = 0
+        #if self.stat[stat_name] < 0:
+        elif self.stat[stat_name] > self.stat_max[stat_name]:
+            self.stat[stat_name] = self.stat_max[stat_name]
+        #elif self.stat[stat_name] > 100:
+    #def set_stat(self,stat_name):
+
+    def get_maxStat(self,stat_name):
+        """Return the value of a stat by its name //get_stat(stat_name)"""
+        return self.stat_max[stat_name]
+    #def get_maxStat(self,stat_name):
+
+    def set_maxStat(self,stat_name,stat_value):
+        """Return the value of a stat by its name //get_stat(stat_name)"""
+        self.stat_max[stat_name] = stat_value
+    #def get_maxStat(self,stat_name):
+
+    def get_regenStat(self,stat_name):
+        """Return the value of a stat by its name //get_stat(stat_name)"""
+        return self.stat_regen[stat_name]
+    #def get_maxStat(self,stat_name):
+
+    def set_regenStat(self,stat_name,stat_value):
+        """Return the value of a stat by its name //get_stat(stat_name)"""
+        self.stat_regen[stat_name] = stat_value
+    #def get_maxStat(self,stat_name):
 
     def play(self, *args):
         """A method to make the tamagotchi play"""
@@ -182,6 +211,8 @@ class Tamagotchi():
 
     def is_dead(self):
         """return true if dead false else"""
+        if self.get_stat("age") > self.get_maxStat("age"):#mort de viellesse
+            return true
         return self.sickness ["Dead"]
         #if self.sickness ["Dead"]:
     #def is_dead(self):
