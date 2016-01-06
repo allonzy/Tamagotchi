@@ -14,9 +14,17 @@ class Ball(Tamagotchi):
 
     #END_def
     def evolve(self):
-        """Change an animal on another when age raise 4"""
-        if (self.get_stat("age") > 4):
-            self.__class__ = Cat
+        """Change an animal on another when age has come"""
+        if self.get_stat("age") > 6:
+            cleanness = self.get_stat("cleanness")
+            happyness = self.get_stat("happyness")
+            satiety = self.get_stat("satiety")
+            if max(cleanness,happyness,satiety) == cleanness :
+                self.__class__ = Fish
+            elif max(cleanness,happyness,satiety) == happyness :
+                self.__class__ = Cat
+            else:
+                self.__class__ = Pingu
             self.change()
 
     #def evolve(self):

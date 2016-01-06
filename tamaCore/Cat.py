@@ -13,4 +13,6 @@ class Cat(Tamagotchi):
         """what change for a Cat """
         self.name = "Cat"
         self.specie = "Cat"
+        self.set_maxStat("health", 120)
+        self.set_maxStat("Age", 100)
     #END_def

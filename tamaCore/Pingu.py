@@ -13,5 +13,6 @@ class Pingu(Tamagotchi):
         """what change for a Pingu """
         self.name = "Pingu"
         self.specie = "Pingu"
-        self.set_stat("health", 80)
+        self.set_maxStat("health", 130)
+        self.set_maxStat("Age", 80)
     #END_def

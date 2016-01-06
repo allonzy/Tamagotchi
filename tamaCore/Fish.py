@@ -13,4 +13,6 @@ class Fish(Tamagotchi):
         """what change for a Fish """
         self.name = "Fish"
         self.specie = "Fish"
+        self.set_maxStat("health", 100)
+        self.set_maxStat("Age", 50)
     #END_def

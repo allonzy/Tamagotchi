@@ -127,10 +127,11 @@ class Tamagotchi():
             self.stat_regen[element] = 0
         #for element in self.stat_regen:
         self.stat_regen['health'] = 0.33
-        self.stat_regen['cleanness'] = -0.2
-        self.stat_regen['energy'] = -0.2
-        self.stat_regen['satiety'] = -0.5
-        self.stat_regen['age'] = 2
+        self.stat_regen['cleanness'] = -0.33
+        self.stat_regen['energy'] = -0.33
+        self.stat_regen['happyness'] = -0.33
+        self.stat_regen['satiety'] = -0.33
+        self.stat_regen['age'] = 1
     #def _init_stat_regen(self):
 
     def debuff(self):
@@ -211,7 +212,7 @@ class Tamagotchi():
 
     def is_dead(self):
         """return true if dead false else"""
-        if self.get_stat("age") > self.get_maxStat("age"):#mort de viellesse
+        if self.get_stat("age") >= self.get_maxStat("age"):#mort de viellesse
             return true
         return self.sickness ["Dead"]
         #if self.sickness ["Dead"]:
@@ -275,7 +276,6 @@ class Tamagotchi():
             #if sickness_stat == "weight":
             elif stat_value <= sickness_stat_value:
                 self.sickness[sickness] = True
-                #//!\\ actualise the degen
             #elif stat_value < sickness_stat_value:
         #for sickness in sickness_list:
         is_healthy = True
