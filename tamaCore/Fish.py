@@ -15,4 +15,6 @@ class Fish(Tamagotchi):
         self.specie = "Fish"
         self.set_maxStat("health", 100)
         self.set_maxStat("Age", 50)
+        self.picture = pygame.image.load("tamaCore/" + self.specie + "/images/body.png")
+
     #END_def

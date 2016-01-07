@@ -15,4 +15,6 @@ class Pingu(Tamagotchi):
         self.specie = "Pingu"
         self.set_maxStat("health", 130)
         self.set_maxStat("Age", 80)
+        self.picture = pygame.image.load("tamaCore/" + self.specie + "/images/body.png")
+
     #END_def

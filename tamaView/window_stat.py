@@ -3,7 +3,6 @@
 
 """ Ce fichier contient les stats utiles à l'affichage de la fenetre principale """
 
-
 # Define some colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)

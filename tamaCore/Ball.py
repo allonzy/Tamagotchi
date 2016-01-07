@@ -11,6 +11,7 @@ class Ball(Tamagotchi):
         """what changes for a Ball """
         self.name = "Ball"
         self.specie = "Ball"
+        self.picture = pygame.image.load("tamaCore/" + self.specie + "/images/body.png")
 
     #END_def
     def evolve(self):

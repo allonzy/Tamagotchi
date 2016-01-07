@@ -5,6 +5,7 @@ from sickness import *
 from aliment import *
 import pickle
 import time
+import pygame
 
 class Tamagotchi():
 
@@ -103,6 +104,7 @@ class Tamagotchi():
         self.stat = dict.fromkeys(self.statKey,70.0)
         self.stat['age'] = 0
         self.stat['weight'] = 50
+
     #def___init__(self)
 
     def get_all_stat(self):
@@ -293,6 +295,7 @@ class Tamagotchi():
     def eat(self, *args):
         """Eat a given aliment to restore energy, health and increase weight """
         #//!\\ Modified the arguments to fit the use of the functions @KirikouLovelace
+        print "grinchEAT "
         aliment_name = args[0][0]
         aliment_satiety = aliment_list[aliment_name][0]
         aliment_happyness = aliment_list[aliment_name][1]
@@ -342,7 +345,6 @@ class Tamagotchi():
         """ Returns a string containing the tamagotchi's stats"""
         return self.__repr__()
     #def __str__(self):
-#class Tamagotchi:
 
     def save(self):
         """ Save the game """

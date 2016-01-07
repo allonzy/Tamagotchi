@@ -51,7 +51,7 @@ def updateScreen(tama, screen, done):
         if event.type == pygame.QUIT:
             done = True
 
-        elif(event.type == pygame.MOUSEBUTTONUP):
+        elif(event.type == pygame.MOUSEBUTTONDOWN):
             pos = pygame.mouse.get_pos()
             for button_title, button_items in clickable_zones.items():
                 button_context, button = button_items
@@ -62,11 +62,20 @@ def updateScreen(tama, screen, done):
                     #if(isin(pos,button)):
                 #if(button_context == context):
             #for button in clickable_zones.items():
-        #elif(event.type == pygame.MOUSEBUTTONUP):
+            #elif(event.type == pygame.MOUSEBUTTONUP):
+
+        elif(event.type == pygame.MOUSEBUTTONUP):
+            if(title == "Eat"):
+                view = "Tamagotchi"
+
+
     #for event in pygame.event.get():
+
+
 
     #The default title is the button name
     title = view
+    args_view.append(draw_background(screen, context))
 
     if(view == "ID Card"):
         context = "Other"
@@ -99,13 +108,13 @@ def updateScreen(tama, screen, done):
         context = "Main"
         args_action.append(view)
         args_view.append(view)
-        args_view.append(done_event)
+        args_view.append(title)
         function = eat_scene
         #elif(title == "Croquette" or title == "Banana"):
 
     pygame.display.set_caption(title)
     action = function(args_view)
-
+    print "grinchMAINSCENE ", action
     move(tama, screen)
 
     pygame.display.flip()
@@ -137,11 +146,8 @@ def main_scene(args):
     tama = args[0]
     screen = args[1]
 
-    font_action = draw_background(screen, "Main")
-
     image = draw_button(screen, "Wash", clickable_zones["Wash"])
     screen.blit(image, [clickable_zones["Wash"][1][0], clickable_zones["Wash"][1][1]])
-
 
     image = draw_button(screen, "Sleep", clickable_zones["Sleep"])
     screen.blit(image, [clickable_zones["Sleep"][1][0], clickable_zones["Sleep"][1][1]])
@@ -151,11 +157,6 @@ def main_scene(args):
 
     image = draw_button(screen, "Croquette", clickable_zones["Croquette"])
     screen.blit(image, [clickable_zones["Croquette"][1][0], clickable_zones["Croquette"][1][1]])
-
-    # pygame.draw.rect(screen, BLACK, [5, 350, 175, 50], 2)
-    # text = font_action.render("EAT", True, GREEN)
-    # screen.blit(text, [10, 360])
-
 
     image = draw_button(screen, "Play", clickable_zones["Play"])
     screen.blit(image, [clickable_zones["Play"][1][0], clickable_zones["Play"][1][1]])
@@ -185,7 +186,7 @@ def stats_scene(args):
     """ Prints Tamagotchi's stats """
     tama = args[0]
     screen = args[1]
-
+    font = args[2]
     # --- Drawing code should go here
 
     font = draw_background(screen, "Other")
@@ -237,8 +238,7 @@ def wash_scene(args):
     """ Wash the Tamagotchi """
     tama = args[0]
     screen = args[1]
-
-    font = draw_background(screen, "Other")
+    font = args[2]
 
     text = font.render(" YOU WASHED THE TAMAGOTCHI ", True, BLACK)
     screen.blit(text, [5, 450])
@@ -249,37 +249,31 @@ def wash_scene(args):
 
 def eat_scene(args):
     """ Feeds the Tamagotchi """
+    global view
     tama = args[0]
     screen = args[1]
+    font = args[2]
+    screen_title = args[4]
+    function = main_scene(args)
 
-    font = draw_background(screen, "Main")
-    #
-    # mouse = Block(args[2])
-    # tama_block = Block(tama.specie)
-    #
-    # tama_block.rect.x = bodysposition[0]
-    # tama_block.rect.y = bodysposition[1]
-    #
-    #
-    # pos = pygame.mouse.get_pos()
-    # mouse.rect.x = pos[0]
-    # mouse.rect.y = pos[1]
-    # block_list = pygame.sprite.Group()
-    # block_list.add(mouse)
-    #
-    # if(not args[3]):
-    #     block_list.draw(screen)
-    #
-    # if(pygame.sprite.collide_rect(mouse, tama_block)):
-    #     function = tama.eat
-    #     #if(pygame.sprite.collide_rect(mouse, tama_block)):
-    #
-    # else:
-    #     function = None
+    if(screen_title == "Eat"):
+        mouse = pygame.image.load("tamaView/images/" + args[3] + ".png")
+        mouse_pos = pygame.mouse.get_pos()
+        mouse_rect = mouse.get_rect()
+        mouse_rect.x = mouse_pos[0]
+        mouse_rect.y = mouse_pos[1]
+        screen.blit(mouse, mouse_pos)
 
-    main_scene([tama, screen])
-    function = tama.eat
+        tama_rect = tama.picture.get_rect()
+        tama_rect.x = bodysposition[0]
+        tama_rect.y = bodysposition[1]
 
+        if(mouse_rect.colliderect(tama_rect)):
+            function = tama.eat
+            view = "Tamagotchi"
+
+    #if(not done_event):
+    print "grinchEATSCENE ", function
     return function
 #def eat_scene(tama, scene):
 
@@ -287,7 +281,7 @@ def play_scene(args):
     """ Makes the Tamagotchi play """
     tama = args[0]
     screen = args[1]
-    font = draw_background(screen, "Other")
+    font = args[2]
 
     text = font.render(" YOU PLAYED WITH THE TAMAGOTCHI ", True, BLACK)
     screen.blit(text, [5, 450])
@@ -300,7 +294,7 @@ def sleep_scene(args):
     """ Makes the Tamagotchi sleep"""
     tama = args[0]
     screen = args[1]
-    font = draw_background(screen, "Other")
+    font = args[2]
 
     text = font.render(" ZZZZZZZZZZZZZZZZZZZZZZZZ ", True, BLACK)
     screen.blit(text, [5, 450])
@@ -322,17 +316,13 @@ def isin(pos, zone):
 #def isin(pos, zone):
 
 def move(tama, screen):
-    """ Displays the tamagotchi's picture """
+    """ Displays the tamagotchi's picture and make it move on the screen """
     global bodysposition
     global bodysmovers
     global X_SPEED
     global Y_SPEED
-    # tamaClass = tama.get_stat("specie")
-    tamaClass = tama.specie
 
-    image = pygame.image.load("tamaCore/" + tamaClass + "/images/body.png")
-
-    screen.blit(image, bodysposition)
+    screen.blit(tama.picture, bodysposition)
     bodysposition[0] += bodysmovers[0]
     bodysposition[1] += bodysmovers[1]
 
@@ -348,7 +338,5 @@ def move(tama, screen):
         bodysmovers[1] = -Y_SPEED
         Y_SPEED = -Y_SPEED
     #if(bodysposition[1] <= BODYSLIMITS["Y_MAX_LIM"]):
-
-
 
 #def move(tama):

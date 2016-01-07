@@ -22,10 +22,15 @@ def main():
         #update Graphics
         action, args_action, done, done_event = window.updateScreen(tama, screen, done)
         # --- Game logic
+        print "grinchMAIN ", action, " ", done_event
         if(action is not None and not done_event):
             action(args_action)
             done_event = True
         #if(action is not None and not done_event):
+
+        if(action == tama.eat):
+            action(args_action)
+            done_event = True
 
         #pass time
         tick_count += 1
