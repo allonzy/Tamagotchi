@@ -80,11 +80,6 @@ def updateScreen(tama, screen, done):
         function = wash_scene
         #elif(view == "Wash"):
 
-    elif(view == "Eat"):
-        context = "Other"
-        function = eat_scene
-        #elif(view == "Eat"):
-
     elif(view == "Play"):
         context = "Other"
         function = play_scene
@@ -140,29 +135,29 @@ def main_scene(args):
 
     font_action = draw_background(screen, "Main")
 
-    pygame.draw.rect(screen, BLACK, [5, 5, 175, 50], 2)
-    text = font_action.render("WASH", True, GREEN)
-    screen.blit(text, [10, 10])
+    image = draw_button(screen, "Wash", clickable_zones["Wash"])
+    screen.blit(image, [clickable_zones["Wash"][1][0], clickable_zones["Wash"][1][1]])
 
 
-    pygame.draw.rect(screen, BLACK, [5, 180, 175, 50], 2)
-    text = font_action.render("PLAY", True, GREEN)
-    screen.blit(text, [10, 190])
+    image = draw_button(screen, "Sleep", clickable_zones["Sleep"])
+    screen.blit(image, [clickable_zones["Sleep"][1][0], clickable_zones["Sleep"][1][1]])
+
+    image = draw_button(screen, "Banana", clickable_zones["Banana"])
+    screen.blit(image, [clickable_zones["Banana"][1][0], clickable_zones["Banana"][1][1]])
+
+    image = draw_button(screen, "Croquette", clickable_zones["Croquette"])
+    screen.blit(image, [clickable_zones["Croquette"][1][0], clickable_zones["Croquette"][1][1]])
+
+    # pygame.draw.rect(screen, BLACK, [5, 350, 175, 50], 2)
+    # text = font_action.render("EAT", True, GREEN)
+    # screen.blit(text, [10, 360])
 
 
-    pygame.draw.rect(screen, BLACK, [5, 350, 175, 50], 2)
-    text = font_action.render("EAT", True, GREEN)
-    screen.blit(text, [10, 360])
-
-
-    pygame.draw.rect(screen, BLACK, [200, 5, 175, 50], 2)
-    text = font_action.render("SLEEP", True, GREEN)
-    screen.blit(text, [210, 10])
+    image = draw_button(screen, "Play", clickable_zones["Play"])
+    screen.blit(image, [clickable_zones["Play"][1][0], clickable_zones["Play"][1][1]])
 
     image = draw_button(screen, "ID Card", clickable_zones["ID Card"])
-    # pygame.draw.rect(screen, BLACK, [200, 180, 175, 50], 2)
-    # text = font_action.render("ID CARD", True, GREEN)
-    screen.blit(image, [205, 180])
+    screen.blit(image, [clickable_zones["ID Card"][1][0], clickable_zones["ID Card"][1][1]])
 
     return None
 
