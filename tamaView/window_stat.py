@@ -13,8 +13,8 @@ RED = (255, 0, 0)
 PI = 3.141592653
 
 # Set the height and width of the screen
-height = 600
-width = 800
+height = 400
+width = 600
 size = (width, height)
 
 #Set the title of the screen
@@ -30,14 +30,23 @@ tick_rate = 60
 #Set the clickable zones on the screen
 #title : context, [x, y, width, height]
 
+BUTTON_X_SIZE = 175
+BUTTON_Y_SIZE = 50
+
+
+FOOD_X_POSITION = 5
+FOOD_Y_POSITION = height - 60
+FOOD_X_SIZE = 50
+FOOD_Y_SIZE = 50
+
 clickable_zones = {
-"Wash" : ("Main", [5, 5, 175, 50]),
-"Play" : ("Main", [5, 180, 175, 50]),
-"Sleep" : ("Main", [200, 5, 175, 50]),
-"ID Card" : ("Main", [200, 180, 175, 50]),
+"Wash" : ("Main", [5, 5, BUTTON_X_SIZE, BUTTON_Y_SIZE]),
+"Play" : ("Main", [5, 10 + BUTTON_Y_SIZE, BUTTON_X_SIZE, BUTTON_Y_SIZE]),
+"Sleep" : ("Main", [5, 15 + 2*(BUTTON_Y_SIZE), BUTTON_X_SIZE, BUTTON_Y_SIZE]),
+"ID Card" : ("All", [width - BUTTON_X_SIZE - 5, 5, BUTTON_X_SIZE, BUTTON_Y_SIZE]),
 "Back" : ("Other", [5, height - 60, 50, 50]),
-"Croquette" : ("Main", [5, 350, 50, 50]),
-"Banana" : ("Main", [60, 350, 50, 50])
+"Croquette" : ("Main", [FOOD_X_POSITION, FOOD_Y_POSITION, FOOD_X_SIZE, FOOD_Y_SIZE]),
+"Banana" : ("Main", [FOOD_X_POSITION + FOOD_X_SIZE + 5, FOOD_Y_POSITION, FOOD_X_SIZE, FOOD_Y_SIZE])
 }
 
 #Set the default values of the window
@@ -50,8 +59,8 @@ context = "Main"
 clock = None
 
 #Set the default values of the body's position
-BODYSDEFAULT_POS_X = 300
-BODYSDEFAULT_POS_Y = 300
+BODYSDEFAULT_POS_X = 200
+BODYSDEFAULT_POS_Y = 200
 
 BODYSLIMITS = {
 "X_MAX_LIM" : BODYSDEFAULT_POS_X + 200,

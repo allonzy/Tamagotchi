@@ -2,7 +2,6 @@
 # coding=utf-8
 
 import pygame
-from Block import *
 import math
 
 from window_stat import *
@@ -55,7 +54,7 @@ def updateScreen(tama, screen, done):
             pos = pygame.mouse.get_pos()
             for button_title, button_items in clickable_zones.items():
                 button_context, button = button_items
-                if(button_context in [context, title]):
+                if(button_context in [context, title, "All"]):
                     if(isin(pos,button)):
                         view = button_title
                         done_event = False
@@ -75,7 +74,7 @@ def updateScreen(tama, screen, done):
 
     #The default title is the button name
     title = view
-    args_view.append(draw_background(screen, context))
+    args_view.append(draw_background(screen, context, title))
 
     if(view == "ID Card"):
         context = "Other"
@@ -114,7 +113,6 @@ def updateScreen(tama, screen, done):
 
     pygame.display.set_caption(title)
     action = function(args_view)
-    print "grinchMAINSCENE ", action
     move(tama, screen)
 
     pygame.display.flip()
@@ -125,17 +123,18 @@ def updateScreen(tama, screen, done):
 #def updateScreen(tama, screen, clock):
 
 
-def draw_background(screen, context):
+def draw_background(screen, context, title):
     """Prepares the screens basics: font, background..."""
     screen.fill(WHITE)
 
     font = pygame.font.SysFont('Calibri', 25, True, False)
 
+    if(title != "ID Card"):
+        draw_button(screen, "ID Card")
+
     if(context != "Main"):
-        button_text, button_zone = clickable_zones["Back"]
-        pygame.draw.rect(screen, BLACK, button_zone, 2)
-        text = font.render("Back", True, GREEN)
-        screen.blit(text, [button_zone[0] + 5, button_zone[1] + 5])
+        draw_button(screen, "Back")
+
     #if(context != "Main"):
 
     return font
@@ -146,41 +145,24 @@ def main_scene(args):
     tama = args[0]
     screen = args[1]
 
-    image = draw_button(screen, "Wash", clickable_zones["Wash"])
-    screen.blit(image, [clickable_zones["Wash"][1][0], clickable_zones["Wash"][1][1]])
-
-    image = draw_button(screen, "Sleep", clickable_zones["Sleep"])
-    screen.blit(image, [clickable_zones["Sleep"][1][0], clickable_zones["Sleep"][1][1]])
-
-    image = draw_button(screen, "Banana", clickable_zones["Banana"])
-    screen.blit(image, [clickable_zones["Banana"][1][0], clickable_zones["Banana"][1][1]])
-
-    image = draw_button(screen, "Croquette", clickable_zones["Croquette"])
-    screen.blit(image, [clickable_zones["Croquette"][1][0], clickable_zones["Croquette"][1][1]])
-
-    image = draw_button(screen, "Play", clickable_zones["Play"])
-    screen.blit(image, [clickable_zones["Play"][1][0], clickable_zones["Play"][1][1]])
-
-    image = draw_button(screen, "ID Card", clickable_zones["ID Card"])
-    screen.blit(image, [clickable_zones["ID Card"][1][0], clickable_zones["ID Card"][1][1]])
-
+    for button_title, button_zone in clickable_zones.items():
+        if(button_title != "Back"):
+            draw_button(screen, button_title)
+    #for button_title, button_zone in clickable_zones.items():
     return None
-
 #def main_window(screen)
 
-def draw_button(screen, title, click_zone):
+def draw_button(screen, title):
     """
         Draws a button on a clickable zone
 
-        Arguments: the screen and the font to use
-        Return: the image to blit
+        Arguments: the screen and the title of the button to blit
     """
-    context, zone = click_zone
+    context, zone = clickable_zones[title]
     pygame.draw.rect(screen, BLACK, zone, 2)
     image = pygame.image.load("tamaView/images/"+ title + ".png")
-
-    return image
-#def draw_button(font_action):
+    screen.blit(image, [clickable_zones[title][1][0], clickable_zones[title][1][1]])
+#def draw_button(screen, title):
 
 def stats_scene(args):
     """ Prints Tamagotchi's stats """
@@ -188,8 +170,6 @@ def stats_scene(args):
     screen = args[1]
     font = args[2]
     # --- Drawing code should go here
-
-    font = draw_background(screen, "Other")
 
     posY = default_posY
     posX = default_posX
@@ -241,10 +221,9 @@ def wash_scene(args):
     font = args[2]
 
     text = font.render(" YOU WASHED THE TAMAGOTCHI ", True, BLACK)
-    screen.blit(text, [5, 450])
+    screen.blit(text, [5, 5])
 
     return tama.wash
-
 #def wash_scene(tama, scene):
 
 def eat_scene(args):
@@ -273,7 +252,6 @@ def eat_scene(args):
             view = "Tamagotchi"
 
     #if(not done_event):
-    print "grinchEATSCENE ", function
     return function
 #def eat_scene(tama, scene):
 
@@ -284,11 +262,10 @@ def play_scene(args):
     font = args[2]
 
     text = font.render(" YOU PLAYED WITH THE TAMAGOTCHI ", True, BLACK)
-    screen.blit(text, [5, 450])
+    screen.blit(text, [5, 5])
 
     return tama.play
 #def play_scene(tama, scene):
-
 
 def sleep_scene(args):
     """ Makes the Tamagotchi sleep"""
@@ -297,7 +274,7 @@ def sleep_scene(args):
     font = args[2]
 
     text = font.render(" ZZZZZZZZZZZZZZZZZZZZZZZZ ", True, BLACK)
-    screen.blit(text, [5, 450])
+    screen.blit(text, [5, 5])
 
     return tama.sleep
 #def sleep_scene(tama, scene):
@@ -312,7 +289,6 @@ def isin(pos, zone):
 
     return(POSX >= i and POSX <= xlim + i \
             and POSY >= j and POSY <= ylim + j)
-
 #def isin(pos, zone):
 
 def move(tama, screen):
@@ -338,5 +314,4 @@ def move(tama, screen):
         bodysmovers[1] = -Y_SPEED
         Y_SPEED = -Y_SPEED
     #if(bodysposition[1] <= BODYSLIMITS["Y_MAX_LIM"]):
-
 #def move(tama):
