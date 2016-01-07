@@ -49,4 +49,6 @@ def main():
 #def main()
 
 main()
+print "grinch I QUIT!"
 window.quit()
+print "grinch QUITTED"
