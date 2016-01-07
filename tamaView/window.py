@@ -122,7 +122,6 @@ def updateScreen(tama, screen, done):
     return(action, args_action, done, done_event)
 #def updateScreen(tama, screen, clock):
 
-
 def draw_background(screen, context, title):
     """Prepares the screens basics: font, background..."""
     screen.fill(WHITE)
