@@ -2,6 +2,7 @@
 # coding=utf-8
 
 import pygame
+from Block import *
 import math
 
 from window_stat import *
@@ -38,6 +39,9 @@ def updateScreen(tama, screen, done):
     global title
     global context
     done_event = True
+    action = None
+    function = eat_scene
+
 
     args_view = [tama, screen]
     args_action = []
@@ -92,14 +96,14 @@ def updateScreen(tama, screen, done):
 
     elif(view == "Croquette" or view == "Banana"):
         title = "Eat"
-        context = "Other"
+        context = "Main"
         args_action.append(view)
         args_view.append(view)
+        args_view.append(done_event)
         function = eat_scene
         #elif(title == "Croquette" or title == "Banana"):
 
     pygame.display.set_caption(title)
-
     action = function(args_view)
 
     move(tama, screen)
@@ -248,31 +252,33 @@ def eat_scene(args):
     tama = args[0]
     screen = args[1]
 
-    font = draw_background(screen, "Other")
+    font = draw_background(screen, "Main")
+    #
+    # mouse = Block(args[2])
+    # tama_block = Block(tama.specie)
+    #
+    # tama_block.rect.x = bodysposition[0]
+    # tama_block.rect.y = bodysposition[1]
+    #
+    #
+    # pos = pygame.mouse.get_pos()
+    # mouse.rect.x = pos[0]
+    # mouse.rect.y = pos[1]
+    # block_list = pygame.sprite.Group()
+    # block_list.add(mouse)
+    #
+    # if(not args[3]):
+    #     block_list.draw(screen)
+    #
+    # if(pygame.sprite.collide_rect(mouse, tama_block)):
+    #     function = tama.eat
+    #     #if(pygame.sprite.collide_rect(mouse, tama_block)):
+    #
+    # else:
+    #     function = None
 
-
-    if(len(args) > 2):
-        message = "YOU GAVE " + args[2].upper() + " TO THE TAMAGOTCHI"
-        text = font.render(message, True, BLACK)
-        screen.blit(text, [5, 450])
-        function = tama.eat
-        #if(len(args) > 2):
-
-    else:
-        # text = font.render(" CROQUETTE OR BANANA ?", True, BLACK)
-
-        button_text, button_zone = clickable_zones["Croquette"]
-        pygame.draw.rect(screen, BLACK, button_zone, 2)
-        text = font.render("Croquette", True, GREEN)
-        screen.blit(text, [button_zone[0] + width / 2 - 10, button_zone[1] + height / 4 - 10])
-
-        button_text, button_zone = clickable_zones["Banana"]
-        pygame.draw.rect(screen, BLACK, button_zone, 2)
-        text = font.render("Banana", True, GREEN)
-        screen.blit(text, [button_zone[0] + width / 2 - 10, button_zone[1] + height / 4 - 10])
-
-        function = None
-    #else(if(len(args) > 2):)
+    main_scene([tama, screen])
+    function = tama.eat
 
     return function
 #def eat_scene(tama, scene):
@@ -330,10 +336,6 @@ def move(tama, screen):
     bodysposition[0] += bodysmovers[0]
     bodysposition[1] += bodysmovers[1]
 
-    #
-    # print "grinch ", X_SPEED, " ", bodysmovers[0], " ", bodysposition[0], " ", BODYSLIMITS["X_MAX_LIM"]
-    # print "grinch2 ", Y_SPEED, " ", bodysmovers[1], " ", bodysposition[1], " ", BODYSLIMITS["Y_MAX_LIM"]
-    #
 
     if(bodysposition[0] >= BODYSLIMITS["X_MAX_LIM"] or bodysposition[0] <= BODYSLIMITS["X_MIN_LIM"]):
         bodysmovers[0] = -X_SPEED

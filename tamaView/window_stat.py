@@ -34,12 +34,11 @@ tick_rate = 60
 clickable_zones = {
 "Wash" : ("Main", [5, 5, 175, 50]),
 "Play" : ("Main", [5, 180, 175, 50]),
-"Eat" : ("Main", [5, 350, 175, 50]),
 "Sleep" : ("Main", [200, 5, 175, 50]),
 "ID Card" : ("Main", [200, 180, 175, 50]),
 "Back" : ("Other", [5, height - 60, 50, 50]),
 "Croquette" : ("Main", [5, 350, 50, 50]),
- "Banana" : ("Main", [60, 350, 50, 50])
+"Banana" : ("Main", [60, 350, 50, 50])
 }
 
 #Set the default values of the window
