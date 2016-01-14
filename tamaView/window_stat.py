@@ -30,7 +30,7 @@ tick_difficulty = 1
 
 #Set the clickable zones on the screen
 #title : context, [x, y, width, height]
-MENU_BUTTON_X_SIZE = 359
+MENU_BUTTON_X_SIZE = 200
 MENU_BUTTON_Y_SIZE = 50
 
 

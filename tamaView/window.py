@@ -26,7 +26,7 @@ def quit():
     pygame.quit()
 #def quit():
 
-def start_scene(screen):
+def start_scene(screen, done):
     """ Prints the menu screen """
     global clock
     global view
@@ -68,14 +68,18 @@ def start_scene(screen):
         #elif(title == "Continue"):
     elif(title == "Rules"):
         action = menu.rules
-        done = True
+        done = False
+        #elif(title == "Rules"):
+    elif(title == "Tamagotchi"):
+        action = None
+        done = False
         #elif(title == "Rules"):
     else:
         action = None
         menu.difficulty(title)
-        done = True
+        done = False
     #else (if(title == "New Game")):
-
+    pygame.display.set_caption(title)
     return done, action
 
 #def start_scene(screen):

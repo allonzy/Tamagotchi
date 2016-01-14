@@ -17,10 +17,10 @@ def main():
 
     # Menu
     while (not done):
-        action = function(screen)
+        done, action = function(screen, done)
 
-        if(action is not None):
-            done, function, tama = action()
+        if(not done and action is not None):
+            function, tama = action()
         #if(action is not None):
     #while (not done):
 
