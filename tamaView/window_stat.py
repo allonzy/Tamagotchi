@@ -26,13 +26,16 @@ default_posY = 5
 
 #Set the default tick rate
 tick_rate = 60
+tick_difficulty = 1
 
 #Set the clickable zones on the screen
 #title : context, [x, y, width, height]
+MENU_BUTTON_X_SIZE = 200
+MENU_BUTTON_Y_SIZE = 50
+
 
 BUTTON_X_SIZE = 175
 BUTTON_Y_SIZE = 50
-
 
 FOOD_X_POSITION = 5
 FOOD_Y_POSITION = height - 60
@@ -40,13 +43,20 @@ FOOD_X_SIZE = 50
 FOOD_Y_SIZE = 50
 
 clickable_zones = {
+"ID Card" : ("All", [width - BUTTON_X_SIZE - 5, 5, BUTTON_X_SIZE, BUTTON_Y_SIZE]),
 "Wash" : ("Main", [5, 5, BUTTON_X_SIZE, BUTTON_Y_SIZE]),
 "Play" : ("Main", [5, 10 + BUTTON_Y_SIZE, BUTTON_X_SIZE, BUTTON_Y_SIZE]),
 "Sleep" : ("Main", [5, 15 + 2*(BUTTON_Y_SIZE), BUTTON_X_SIZE, BUTTON_Y_SIZE]),
-"ID Card" : ("All", [width - BUTTON_X_SIZE - 5, 5, BUTTON_X_SIZE, BUTTON_Y_SIZE]),
-"Back" : ("Other", [5, height - 60, 50, 50]),
 "Croquette" : ("Main", [FOOD_X_POSITION, FOOD_Y_POSITION, FOOD_X_SIZE, FOOD_Y_SIZE]),
-"Banana" : ("Main", [FOOD_X_POSITION + FOOD_X_SIZE + 5, FOOD_Y_POSITION, FOOD_X_SIZE, FOOD_Y_SIZE])
+"Banana" : ("Main", [FOOD_X_POSITION + FOOD_X_SIZE + 5, FOOD_Y_POSITION, FOOD_X_SIZE, FOOD_Y_SIZE]),
+"Back" : ("Other", [5, height - 60, 50, 50]),
+"New Game" : ("Menu", [5, 5, MENU_BUTTON_X_SIZE, MENU_BUTTON_Y_SIZE]),
+"Continue" : ("Menu", [5, 10 + MENU_BUTTON_Y_SIZE, MENU_BUTTON_X_SIZE, MENU_BUTTON_Y_SIZE]),
+"Rules" : ("Menu", [5, 15 + 2*(MENU_BUTTON_Y_SIZE), MENU_BUTTON_X_SIZE, MENU_BUTTON_Y_SIZE]),
+"Easy" : ("Menu", [5, 20 + 3*(MENU_BUTTON_Y_SIZE), MENU_BUTTON_X_SIZE, MENU_BUTTON_Y_SIZE]),
+"Medium" : ("Menu", [10 + MENU_BUTTON_X_SIZE, 20 + 3*(MENU_BUTTON_Y_SIZE), MENU_BUTTON_X_SIZE, MENU_BUTTON_Y_SIZE]),
+"Hard" : ("Menu", [15 + 2*(MENU_BUTTON_X_SIZE), 20 + 3*(MENU_BUTTON_Y_SIZE), MENU_BUTTON_X_SIZE, MENU_BUTTON_Y_SIZE]),
+"Insane" : ("Menu", [0, width - 4, 4, 4])
 }
 
 #Set the default values of the window
@@ -73,3 +83,6 @@ Y_SPEED = -2
 
 bodysposition = [BODYSDEFAULT_POS_X, BODYSDEFAULT_POS_Y]
 bodysmovers = [X_SPEED, Y_SPEED]
+
+# This variable contains the rules
+rules = None
