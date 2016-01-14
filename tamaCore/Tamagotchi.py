@@ -354,23 +354,21 @@ class Tamagotchi():
         identity["Time"] = time.time()
         identity["Type"] = self.__class__
         with open('save', 'wb') as fichier:
-            my_pickler = pickle.Pickler(fichier)
-            my_pickler.dump(identity)
+            pickle.dump(identity, output, pickle.HIGHEST_PROTOCOL)
     #def save(self)
 
     def load_file(self):
         """ Load the game and return the time since the last connection """
         with open('save', 'rb') as fichier:
-            my_depickler = pickle.Unpickler(fichier)
-            identity = my_depickler.load()
+            identity = pickle.load(fichier)
             for key, value in identity.items():
                 if(key in self.statKey):
                     self.set_stat(key,value)
                 #if(key in self.statKey):
-            old_time = identity["Time"]
-            now_time = time.time()
             self.__class__ = identity["Type"]
             self.change()
+            old_time = identity["Time"]
+            now_time = time.time()
             return (now_time - old_time)/60
     #def load_file
     @staticmethod
