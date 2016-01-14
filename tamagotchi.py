@@ -4,8 +4,7 @@
 import tamaView.window as window
 from tamaView.window_stat import *
 from tamaCore.Tamagotchi import Tamagotchi
-from tamaCore.Ball import Ball
-from tamaCore.Cat import Cat
+from tamaCore.SpeciesList import *
 def main():
 
     done_event = False
