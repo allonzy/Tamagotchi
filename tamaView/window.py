@@ -5,6 +5,7 @@ import pygame
 import math
 
 from window_stat import *
+import tamaMenu.function as menu
 
 def start():
     """
@@ -57,7 +58,25 @@ def start_scene(screen):
     #The default title is the button name
     title = view
 
-    
+    if(title == "New Game"):
+        action = menu.new_game
+        done = True
+        #if(title == "New Game"):
+    elif(title == "Continue"):
+        action = menu.load
+        done = True
+        #elif(title == "Continue"):
+    elif(title == "Rules"):
+        action = menu.rules
+        done = True
+        #elif(title == "Rules"):
+    else:
+        action = None
+        menu.difficulty(title)
+        done = True
+    #else (if(title == "New Game")):
+
+    return done, action
 
 #def start_scene(screen):
 

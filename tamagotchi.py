@@ -3,7 +3,9 @@
 
 import tamaView.window as window
 from tamaView.window_stat import *
-from tamaCore.Ball import Ball
+from tamaCore.Tamagotchi import Tamagotchi
+from tamaCore.SpeciesList import *
+
 def main():
     global tick_rate
     global tick_difficulty

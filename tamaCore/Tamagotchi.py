@@ -349,27 +349,37 @@ class Tamagotchi():
         """ Save the game """
         identity = dict.fromkeys(self.statKey)
         for key in identity:
-            identity[key] = self.get_value(key)
+            identity[stat][key] = self.get_value(key)
         identity["Name"] = self.name
         identity["Time"] = time.time()
-
+        identity["Type"] = self.__class__
         with open('save', 'wb') as fichier:
             my_pickler = pickle.Pickler(fichier)
             my_pickler.dump(identity)
     #def save(self)
 
-    def load_game(self):
+    def load_file(self):
         """ Load the game and return the time since the last connection """
         with open('save', 'rb') as fichier:
             my_depickler = pickle.Unpickler(fichier)
             identity = my_depickler.load()
-
             for key, value in identity.items():
-                self.set_stat(key,value)
+                if(key in self.statKey):
+                    self.set_stat(key,value)
+                #if(key in self.statKey):
             old_time = identity["Time"]
             now_time = time.time()
-
+            self.__class__ = identity["Type"]
+            self.change()
             return (now_time - old_time)/60
+    #def load_file
+    @staticmethod
+    def load_game(self):
+        """ Load the game and apply the time """
+        tamago = Tamagotchi()
+        time = tamago.load_file
+        tamago.pass_time(time)
+        return tamago
     #def load_game
     def evolve(self):
         """Empty"""
