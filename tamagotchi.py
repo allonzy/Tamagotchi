@@ -3,21 +3,34 @@
 
 import tamaView.window as window
 from tamaView.window_stat import *
-from tamaCore.Tamagotchi import Tamagotchi
 from tamaCore.Ball import Ball
-from tamaCore.Cat import Cat
 def main():
-
-    done_event = False
-    tama = Ball()
+    global tick_rate
+    global tick_difficulty
 
     screen, clock = window.start()
+    tama = None
+    done = False
+    function = window.start_scene
+
+    # Menu
+    while (not done):
+        action = function(screen)
+
+        if(action is not None):
+            done, function, tama = action()
+        #if(action is not None):
+    #while (not done):
+
+    tama = Ball()
+    done_event = False
     function = window.main_scene
 
     tick_count = 0
 
     done = False
 
+    # Game
     while(not done):
         #update Graphics
         action, args_action, done, done_event = window.updateScreen(tama, screen, done)
@@ -33,8 +46,9 @@ def main():
 
         #pass time
         tick_count += 1
-        if(tick_count == tick_rate):
-            tama.pass_time(1)
+        print "grinch ", tick_count, " ", tick_difficulty, " ", tick_rate
+        if(tick_count >= tick_rate):
+            tama.pass_time(tick_difficulty)
             tick_count = 0
         #if(tick_count == tick_rate):
 
@@ -42,6 +56,7 @@ def main():
         if(tama.is_dead()):
             done = True
         #if(tama.is_dead()):
+        clock.tick(tick_rate)
     #while(not done):
 
 

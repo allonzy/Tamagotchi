@@ -24,6 +24,59 @@ def quit():
     """ Ferme la fenêtre et quitte le jeu """
     pygame.quit()
 #def quit():
+
+def start_scene(screen):
+    """ Prints the menu screen """
+    global clock
+    global view
+    global title
+    global context
+
+    menu(screen)
+
+    for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
+            done = True
+
+        elif(event.type == pygame.MOUSEBUTTONDOWN):
+            pos = pygame.mouse.get_pos()
+            for button_title, button_items in clickable_zones.items():
+                button_context, button = button_items
+                if(button_context in ["Menu", title]):
+                    if(isin(pos,button)):
+                        view = button_title
+                    #if(isin(pos,button)):
+                #if(button_context in ["Menu", title]):
+            #for button in clickable_zones.items():
+        #elif(event.type == pygame.MOUSEBUTTONUP):
+    #for event in pygame.event.get():
+
+
+
+    #The default title is the button name
+    title = view
+
+    
+
+#def start_scene(screen):
+
+def menu(screen):
+    """ Prints the buttons of the menu screen """
+    context = "Main"
+    title = "Menu"
+    draw_background(screen, context, title)
+
+    for button_title, button_zone in clickable_zones.items():
+        context, zone = button_zone
+        if(context == "Menu"):
+            print "grinch ", button_title
+            draw_button(screen, button_title)
+        #if(context == "Menu"):
+    #for button_title, button_context in clickable_zones.items():
+    pygame.display.flip()
+#def start_scene(screen):
+
 def updateScreen(tama, screen, done):
     """
         The main window event
@@ -116,7 +169,6 @@ def updateScreen(tama, screen, done):
     move(tama, screen)
 
     pygame.display.flip()
-    clock.tick(tick_rate)
 
 
     return(action, args_action, done, done_event)
@@ -128,7 +180,7 @@ def draw_background(screen, context, title):
 
     font = pygame.font.SysFont('Calibri', 25, True, False)
 
-    if(title != "ID Card"):
+    if(title != "Menu" and title != "ID Card"):
         draw_button(screen, "ID Card")
 
     if(context != "Main"):
@@ -145,7 +197,8 @@ def main_scene(args):
     screen = args[1]
 
     for button_title, button_zone in clickable_zones.items():
-        if(button_title != "Back"):
+        button_context, button_zone = button_zone
+        if(button_context in ["All", "Main"]):
             draw_button(screen, button_title)
     #for button_title, button_zone in clickable_zones.items():
     return None
